@@ -1,2 +1,1 @@
-# Space Invaders microStudio
-https://microstudio.io/i/WeirdAlBertowicz/spaceinvaders/
+# Repozytorium z ćwiczeniami z przedmiotu Programowanie Gier Komputerowych
