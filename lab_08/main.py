@@ -133,7 +133,7 @@ def updategame(dt):
         a.wrap()
 
     # Strzelanie
-    if (rl.is_key_pressed(32) and len(bullets) < utils.MAX_BULLETS): # Spacja
+    if (rl.is_key_pressed(32) and len(bullets) < utils.MAX_BULLETS) and spaceship.alive: # Spacja
         if utils.DEBUG:
             print("STRZAŁ")
         bullet_pos = spaceship.get_nose()
