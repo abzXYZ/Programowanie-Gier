@@ -10,6 +10,7 @@ var shoot_cooldown: float = 0.0
 var score = 0
 var bullets = []
 const max_bullets = 3
+const move_speed = 10
 
 func score_up() -> void:
 	score += 1
@@ -33,13 +34,13 @@ func _process(delta: float) -> void:
 	
 	# Ruch
 	if Input.is_action_pressed("ui_left"):
-		position.x -= 0.5
+		position.x -= move_speed * delta
 	if Input.is_action_pressed("ui_right"):
-		position.x += 0.5
+		position.x += move_speed * delta
 	if Input.is_action_pressed("ui_up"):
-		position.y += 0.5
+		position.y += move_speed * delta
 	if Input.is_action_pressed("ui_down"):
-		position.y -= 0.5
+		position.y -= move_speed * delta
 	
 	# Clamp pozycji
 	position.x = clamp(position.x, -limit_x, limit_x)
