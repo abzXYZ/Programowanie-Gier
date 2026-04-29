@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bcedj82pbcm8l"]
+
+[ext_resource type="Script" uid="uid://0fkvvkxrfoft" path="res://path_follow_3d.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://r26yvyntihf8" path="res://mesh_instance_3d.gd" id="2_0xm2m"]
+
+[sub_resource type="Curve3D" id="Curve3D_7dm0k"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 5, 0, 30, 0, 0, 0, 0, 0, 0, -3, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 50),
+"tilts": PackedFloat32Array(0, 0, 0.17453292, -0.17453292, 0)
+}
+point_count = 5
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[node name="Node3D" type="Node3D" unique_id=112565423]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=208703623]
+transform = Transform3D(0.65751994, -0.59790194, -0.45845485, 0, -0.6084845, 0.79356575, -0.7534372, -0.52178526, -0.40009066, -2.9132354, 4.376631, -3.798882)
+light_color = Color(1, 0.26666668, 1, 1)
+light_energy = 3.653
+light_volumetric_fog_energy = 1.249
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=694887117]
+transform = Transform3D(-0.0279164, -0.45863336, -0.88818693, -0.013135868, -0.88828814, 0.4590985, -0.99952394, 0.024483483, 0.018773263, -17.071537, 4.376631, 38.429825)
+layers = 3
+light_color = Color(0.24856618, 0.5011131, 4.813075e-07, 1)
+light_energy = 3.653
+light_volumetric_fog_energy = 1.249
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="." unique_id=958722233]
+transform = Transform3D(-0.5345293, -0.67068195, -0.5142606, -2.8585596e-09, -0.6084845, 0.79356575, -0.84515, 0.42418408, 0.32525283, -2.9132354, 4.376631, 10.192043)
+layers = 7
+light_color = Color(3.080368e-06, 0.7122907, 0.74378586, 1)
+light_energy = 3.653
+light_volumetric_fog_energy = 1.249
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1152189755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17553568, 0, 15.182156)
+curve = SubResource("Curve3D_7dm0k")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=419238680]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D" unique_id=138494104]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.17553435, 0, 15.182156)
+mesh = SubResource("BoxMesh_7dm0k")
+script = ExtResource("2_0xm2m")
+
+[node name="Camera3D" type="Camera3D" parent="Path3D/PathFollow3D" unique_id=915301658]
+transform = Transform3D(0.99999124, -0.0041052885, 0.0008316354, 0.004188677, 0.9800793, -0.19856241, 8.742201e-08, 0.19856414, 0.98008794, 0.15569085, -0.5050981, 19.024757)
+fov = 90.0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=986079643]
+unique_name_in_owner = true
+
+[node name="RatioLabel" type="Label" parent="HUD" unique_id=1632911578]
+offset_right = 727.0
+offset_bottom = 186.0
+text = "Progress Ratio:"
+
+[node name="TimeLabel" type="Label" parent="HUD" unique_id=418939363]
+offset_left = -1.0
+offset_top = 52.0
+offset_right = 726.0
+offset_bottom = 238.0
+text = "Time:"
+
+[node name="SpeedLabel" type="Label" parent="HUD" unique_id=1417540419]
+offset_top = 25.0
+offset_right = 727.0
+offset_bottom = 211.0
+text = "Speed:"
