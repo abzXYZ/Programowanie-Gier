@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://becalud882r2"]
+
+[ext_resource type="Script" uid="uid://cj7ekhpskvpbr" path="res://bullet.gd" id="1_v7oki"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rtl8c"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v7oki"]
+radius = 0.2
+
+[node name="Node3D" type="Area3D" unique_id=1886160757]
+transform = Transform3D(1.9106855e-15, 4.3711385e-08, 0.99999994, 1, -4.3711385e-08, 0, 4.371139e-08, 0.99999994, -4.3711385e-08, 0, 0, 0)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_v7oki")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=62468082]
+transform = Transform3D(0.60889065, -1.0658141e-14, 4.2351647e-22, 0, 0.7652819, 1.7763568e-15, -2.1175824e-22, 0, 0.67862463, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rtl8c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=113549723]
+shape = SubResource("SphereShape3D_v7oki")
