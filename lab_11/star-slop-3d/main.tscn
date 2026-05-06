@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://bcedj82pbcm8l"]
+
+[ext_resource type="Script" uid="uid://cdqoa07dsjd0" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://0fkvvkxrfoft" path="res://path_follow_3d.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://r26yvyntihf8" path="res://ship.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://becalud882r2" path="res://bullet.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://b3it0adgiwch5" path="res://enemy.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://dtjatladoc8fk" path="res://wave_spawner.gd" id="5_lquwl"]
+
+[sub_resource type="Curve3D" id="Curve3D_7dm0k"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 50),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+
+[node name="Game" type="Node3D" unique_id=112565423]
+script = ExtResource("1_7mycd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=208703623]
+transform = Transform3D(0.524794, -0.843804, 0.11218767, -0.39613605, -0.12543884, 0.9095831, -0.7534372, -0.52178526, -0.40009066, 64.44006, 4.376631, -3.798882)
+light_color = Color(1, 0.26666668, 1, 1)
+light_energy = 3.653
+light_volumetric_fog_energy = 1.249
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=694887117]
+transform = Transform3D(0.21820194, -0.007971316, -0.9758712, 0.09340635, -0.9952053, 0.029014645, -0.9714233, -0.0974836, -0.21641113, -17.071537, 4.376631, 38.429825)
+layers = 3
+light_color = Color(0.24856618, 0.5011131, 4.813075e-07, 1)
+light_energy = 3.653
+light_volumetric_fog_energy = 1.249
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="." unique_id=958722233]
+transform = Transform3D(-0.5345293, -0.6706821, -0.5142607, 0.3193458, -0.72365487, 0.6118349, -0.78249395, 0.16281666, 0.6009942, 351.26355, 4.376631, 10.192043)
+layers = 7
+light_color = Color(3.080368e-06, 0.7122907, 0.74378586, 1)
+light_energy = 3.653
+light_volumetric_fog_energy = 1.249
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1152189755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17553568, 0, 15.182156)
+curve = SubResource("Curve3D_7dm0k")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=419238680]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D" unique_id=138494104]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.17553435, 0, 15.182156)
+mesh = SubResource("BoxMesh_7dm0k")
+script = ExtResource("2_0xm2m")
+bullet_scene = ExtResource("3_h2yge")
+
+[node name="Area3D" type="Area3D" parent="Path3D/PathFollow3D/MeshInstance3D" unique_id=1924585736]
+collision_mask = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/PathFollow3D/MeshInstance3D/Area3D" unique_id=1563895645]
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="Camera3D" type="Camera3D" parent="Path3D/PathFollow3D" unique_id=915301658]
+transform = Transform3D(0.99999124, -0.0041052885, 0.0008316354, 0.004188677, 0.9800793, -0.19856241, 8.742201e-08, 0.19856414, 0.98008794, 0.15569085, -0.5050981, 19.024757)
+fov = 90.0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=986079643]
+unique_name_in_owner = true
+
+[node name="RatioLabel" type="Label" parent="HUD" unique_id=1632911578]
+offset_right = 727.0
+offset_bottom = 186.0
+text = "Progress Ratio:"
+
+[node name="TimeLabel" type="Label" parent="HUD" unique_id=418939363]
+offset_left = -1.0
+offset_top = 52.0
+offset_right = 726.0
+offset_bottom = 238.0
+text = "Time:"
+
+[node name="SpeedLabel" type="Label" parent="HUD" unique_id=1417540419]
+offset_top = 25.0
+offset_right = 727.0
+offset_bottom = 211.0
+text = "Speed:"
+
+[node name="Enemy" parent="." unique_id=1978242589 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8200123, 0, 17.633793)
+
+[node name="WaveSpawner" type="Node" parent="." unique_id=90179853]
+script = ExtResource("5_lquwl")
