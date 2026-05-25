@@ -15,6 +15,10 @@ run/main_scene="uid://ydkaw80uwbe5"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalBus="*uid://bagnqr4rsucpo"
+
 [input]
 
 use={

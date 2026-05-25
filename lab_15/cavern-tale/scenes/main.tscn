@@ -5,6 +5,45 @@
 [ext_resource type="Script" uid="uid://w0fni1xh8x8m" path="res://scenes/lmg.gd" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://drfhtpawnsuot" path="res://assets/By_Eduardo_Scarpato/02 - Decorations.png" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dc62k8262ialc" path="res://scenes/bullet.tscn" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://c2j0htuxp84sy" path="res://assets/particles.png" id="6_tefeu"]
+[ext_resource type="FontFile" uid="uid://bill4gukq7d2v" path="res://assets/Ithaca font/Ithaca-LVB75.ttf" id="7_o6xl0"]
+[ext_resource type="Script" uid="uid://chtqy5x27nrn4" path="res://scenes/hud.gd" id="7_tipki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6xl0"]
+atlas = ExtResource("6_tefeu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
+atlas = ExtResource("6_tefeu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
+atlas = ExtResource("6_tefeu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
+atlas = ExtResource("6_tefeu")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ya4ey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6xl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tipki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85g3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_choun")
+}],
+"loop": false,
+"name": &"default",
+"speed": 48.0
+}]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 resource_name = "exterior"
@@ -133,6 +172,13 @@ texture = ExtResource("3_sugp2")
 [sub_resource type="TileSet" id="TileSet_tbgi4"]
 sources/0 = SubResource("TileSetAtlasSource_jyhfs")
 
+[sub_resource type="LabelSettings" id="LabelSettings_o6xl0"]
+font = ExtResource("7_o6xl0")
+font_size = 48
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0.5, 0.5)
+
 [node name="Main" type="Node2D" unique_id=1985642855]
 
 [node name="Player" parent="." unique_id=1062531466 instance=ExtResource("1_o5qli")]
@@ -146,8 +192,15 @@ position_smoothing_enabled = true
 [node name="LMG" type="Sprite2D" parent="Player" unique_id=644070914]
 position = Vector2(0, 12)
 script = ExtResource("2_tbgi4")
+ammo_regen_speed = 0.5
 projectile = ExtResource("5_tbgi4")
+cooldown = 0.1
 metadata/_custom_type_script = "uid://do44ti8bx7o68"
+
+[node name="MuzzleFlash" type="AnimatedSprite2D" parent="Player/LMG" unique_id=1173275045]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ya4ey")
+offset = Vector2(-5, 0)
 
 [node name="Room" type="Node2D" parent="." unique_id=700258790]
 
@@ -162,3 +215,29 @@ tile_set = SubResource("TileSet_jyhfs")
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAJAP//AAAEAAEAAAAJAAAAAAAEAAIAAAAJAAEAAAAEAAMAAAAKAP//AAAFAAEAAAAKAAAAAAAFAAIAAAAKAAEAAAAFAAMAAAALAP//AAAGAAEAAAALAAAAAAAGAAIAAAALAAEAAAAGAAMAAAAKAP7/AAAFAAAAAAD9/wYAAAAEAAEAAAD9/wcAAAAEAAIAAAD9/wgAAAAEAAMAAAD+/wYAAAAFAAEAAAD+/wcAAAAFAAIAAAD+/wgAAAAFAAMAAAD//wYAAAAGAAEAAAD//wcAAAAGAAIAAAD//wgAAAAGAAMAAAD+/wUAAAAFAAAAAAD+////AAABAAIAAAD+/wAAAAABAAMAAAAHAAYAAAAAAAIAAAAHAAcAAAAAAAMAAAAMAAYAAAAAAAIAAAAMAAcAAAAAAAMAAAAKAAcAAAAAAAEAAAADAAYAAAAAAAEAAAAEAP7/AAACAAIAAAAEAP//AAACAAMAAAAFAP7/AAADAAIAAAAFAP//AAADAAMAAAABAAAAAAAAAAEAAAAIAAEAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_tbgi4")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1762265889]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("7_tipki")
+
+[node name="Control" type="Control" parent="HUD" unique_id=902233794]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AmmoLabel" type="Label" parent="HUD/Control" unique_id=1142704249]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 28.0
+offset_right = 235.0
+offset_bottom = 70.0
+text = "AMMO 50 \\ 50"
+label_settings = SubResource("LabelSettings_o6xl0")
+uppercase = true
+metadata/_edit_use_anchors_ = true
