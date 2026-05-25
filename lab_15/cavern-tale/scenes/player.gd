@@ -5,6 +5,23 @@ const JUMP_VELOCITY = -180
 const GRAVITY = 500
  
 @onready var sprite = $AnimatedSprite2D
+var active_weapon : Weapon
+
+func _switch_weapon(weapon) -> void:
+	active_weapon = weapon
+
+func _ready() -> void:
+	_switch_weapon($LMG)
+
+func _process(delta: float) -> void:
+	# Weapon firing
+	if active_weapon:
+		if active_weapon.current_cooldown <= 0:
+			if Input.is_action_pressed("use"):
+				active_weapon.use()
+				active_weapon.current_cooldown = active_weapon.cooldown
+		else:
+			active_weapon.current_cooldown -= delta
 
 func _physics_process(delta: float) -> void:
 	# Gravity
