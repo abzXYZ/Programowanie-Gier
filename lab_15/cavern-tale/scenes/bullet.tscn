@@ -20,5 +20,6 @@ metadata/_custom_type_script = "uid://b13acn0u36kgk"
 shape = SubResource("RectangleShape2D_o6xl0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2029108272]
+z_index = 3
 texture_filter = 1
 texture = SubResource("AtlasTexture_tipki")
