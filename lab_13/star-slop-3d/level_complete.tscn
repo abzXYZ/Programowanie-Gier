@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://27lludh27a4d"]
 
 [ext_resource type="Script" uid="uid://okt8dfhwwgc8" path="res://menu_button.gd" id="1_sxtul"]
+[ext_resource type="Script" uid="uid://ddvxag3gght3c" path="res://level_complete_screen.gd" id="1_xvwna"]
 [ext_resource type="Script" uid="uid://cdy25uoxrv831" path="res://final_score.gd" id="2_jia4s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jia4s"]
@@ -16,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xvwna")
 
 [node name="SoreLoser" type="Label" parent="." unique_id=184447855]
 layout_mode = 0

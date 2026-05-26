@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cm5qfo287vfa7"]
 
 [ext_resource type="Script" uid="uid://cpgtoju1ibjxi" path="res://start_button.gd" id="1_cmhrf"]
+[ext_resource type="Script" uid="uid://ddvxag3gght3c" path="res://level_complete_screen.gd" id="1_d2nv2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_loy4s"]
 font_size = 72
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_d2nv2")
 
 [node name="Title" type="Label" parent="." unique_id=754581798]
 layout_mode = 1

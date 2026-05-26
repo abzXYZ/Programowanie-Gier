@@ -59,6 +59,7 @@ func _ready():
 func _on_hit(_area: Area3D):
 	hp -= 1
 	if hp <= 0:
+		# Enemy killed, bo dodana obsługa ilości przeciwników, co wymaga dedykowanej funkcji
 		GameManager.enemy_killed.emit(score_value)
 		$MeshInstance3D.material_override = flash_material
 		await get_tree().create_timer(0.1).timeout

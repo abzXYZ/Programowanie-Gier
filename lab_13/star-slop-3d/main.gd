@@ -29,3 +29,6 @@ func _ready() -> void:
 	GameManager.lives_changed.connect(_update_lives)
 	GameManager.gameover.connect(_game_over_screen)
 	GameManager.level_complete.connect(_level_complete_screen)
+	# Puść muzykę
+	GameManager.stop_title_theme()
+	GameManager.play_bgm()
