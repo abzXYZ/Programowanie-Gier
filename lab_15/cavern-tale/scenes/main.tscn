@@ -1,14 +1,21 @@
 [gd_scene format=4 uid="uid://ydkaw80uwbe5"]
 
 [ext_resource type="PackedScene" uid="uid://33xiodk8pji4" path="res://scenes/player.tscn" id="1_o5qli"]
-[ext_resource type="Texture2D" uid="uid://ct7lh62dxdpjy" path="res://assets/By_Eduardo_Scarpato/01 - Tileset.png" id="2_0wfyh"]
-[ext_resource type="Script" uid="uid://w0fni1xh8x8m" path="res://scenes/lmg.gd" id="2_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://drfhtpawnsuot" path="res://assets/By_Eduardo_Scarpato/02 - Decorations.png" id="3_sugp2"]
+[ext_resource type="Texture2D" uid="uid://ct7lh62dxdpjy" path="res://assets/images/By_Eduardo_Scarpato/01 - Tileset.png" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://b2q1v1byn3725" path="res://assets/images/weapons.png" id="2_choun"]
+[ext_resource type="Script" uid="uid://w0fni1xh8x8m" path="res://scripts/lmg.gd" id="2_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://drfhtpawnsuot" path="res://assets/images/By_Eduardo_Scarpato/02 - Decorations.png" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dc62k8262ialc" path="res://scenes/bullet.tscn" id="5_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://c2j0htuxp84sy" path="res://assets/particles.png" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://c2j0htuxp84sy" path="res://assets/images/particles.png" id="6_tefeu"]
 [ext_resource type="TileSet" uid="uid://c8xefsx8egxgh" path="res://assets/decor.tres" id="7_85g3d"]
 [ext_resource type="FontFile" uid="uid://bill4gukq7d2v" path="res://assets/Ithaca font/Ithaca-LVB75.ttf" id="7_o6xl0"]
-[ext_resource type="Script" uid="uid://chtqy5x27nrn4" path="res://scenes/hud.gd" id="7_tipki"]
+[ext_resource type="Script" uid="uid://chtqy5x27nrn4" path="res://scripts/hud.gd" id="7_tipki"]
+[ext_resource type="Texture2D" uid="uid://df0hj8dtv5xyh" path="res://assets/images/weapon icons.png" id="11_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://diuqnaxf5stbv" path="res://scenes/drone.tscn" id="11_ya4ey"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
+atlas = ExtResource("2_choun")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6xl0"]
 atlas = ExtResource("6_tefeu")
@@ -180,6 +187,26 @@ shadow_size = 4
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0.5, 0.5)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
+bg_color = Color(0.121876836, 0.121876836, 0.121876836, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
+bg_color = Color(0.85882354, 0.39215687, 0.21568628, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_trceg"]
+font = ExtResource("7_o6xl0")
+font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trceg"]
+bg_color = Color(0.121876836, 0.121876836, 0.121876836, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
+bg_color = Color(0.698595, 0.22426587, 0.28139022, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
+atlas = ExtResource("11_eb6dy")
+region = Rect2(0, 0, 64, 64)
+
 [node name="Main" type="Node2D" unique_id=1985642855]
 
 [node name="Player" parent="." unique_id=1062531466 instance=ExtResource("1_o5qli")]
@@ -191,7 +218,9 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="LMG" type="Sprite2D" parent="Player" unique_id=644070914]
+z_index = 1
 position = Vector2(0, 12)
+texture = SubResource("AtlasTexture_ya4ey")
 script = ExtResource("2_tbgi4")
 ammo_regen_speed = 0.5
 projectile = ExtResource("5_tbgi4")
@@ -208,6 +237,7 @@ offset = Vector2(-5, 0)
 [node name="Fg" type="TileMapLayer" parent="Room" unique_id=2084149724]
 z_index = 1
 texture_filter = 1
+position = Vector2(-1, 0)
 tile_map_data = PackedByteArray("AAD9/wYAAAAEAAEAAAD9/wcAAAAEAAIAAAD9/wgAAAAEAAMAAAD+/wYAAAAFAAEAAAD+/wcAAAAFAAIAAAD+/wgAAAAFAAMAAAD//wYAAAAGAAEAAAD//wcAAAAGAAIAAAD//wgAAAAGAAMAAAD+/wUAAAAFAAAAAAAEAP7/AAACAAIAAAAFAP7/AAADAAIAAAAIAAEAAAAAAAEAAAAKAAcAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_tbgi4")
 
@@ -215,18 +245,17 @@ tile_set = SubResource("TileSet_tbgi4")
 texture_filter = 1
 use_parent_material = true
 position = Vector2(1, 0)
-tile_map_data = PackedByteArray("AAD+/wEAAAABAAAAAAD//wEAAAABAAAAAAAAAAEAAAABAAAAAAABAAEAAAABAAAAAAACAAEAAAACAAAAAAD9/wEAAAAAAAAAAAD+/wIAAAABAAEAAAD//wIAAAABAAEAAAAAAAIAAAABAAEAAAABAAIAAAABAAEAAAACAAIAAAACAAEAAAD9/wIAAAAAAAEAAAD9/wMAAAAAAAIAAAD+/wMAAAABAAIAAAACAAMAAAACAAIAAAD//wMAAAABAAIAAAAAAAMAAAABAAIAAAABAAMAAAABAAIAAAAEAAAAAAAEAAAAAAAFAAAAAAAHAAAAAAAFAAEAAAAHAAMAAAAEAAEAAAAEAAMAAAAIAAMAAAABAAEAAAAJAAMAAAABAAEAAAAKAAMAAAABAAEAAAAKAAQAAAABAAEAAAAJAAQAAAABAAEAAAAIAAQAAAABAAEAAAAHAAIAAAAAAAAAAAAIAAIAAAABAAAAAAAJAAIAAAABAAAAAAAKAAIAAAABAAAAAAALAAIAAAACAAAAAAALAAUAAAACAAIAAAAHAAUAAAAAAAIAAAAIAAUAAAABAAIAAAAJAAUAAAABAAIAAAAKAAUAAAABAAIAAAALAAQAAAACAAEAAAALAAMAAAACAAEAAAAHAAQAAAAAAAEAAAAHAAMAAAAAAAEAAAANAAgAAAACAAMAAAAMAAgAAAABAAMAAAALAAgAAAABAAMAAAAKAAgAAAABAAMAAAAJAAgAAAABAAMAAAAIAAgAAAABAAMAAAAHAAgAAAABAAMAAAAGAAgAAAABAAMAAAAFAAgAAAAAAAMAAAADAAcAAAAHAAAAAAADAAgAAAAHAAMAAAACAAgAAAAEAAMAAAACAAcAAAAEAAAAAAD//wkAAAACAAAAAAD+/wkAAAABAAAAAAD9/wkAAAABAAAAAAD8/wkAAAABAAAAAAD7/wkAAAAFAAIAAAD7/wgAAAACAAAAAAD6/wcAAAACAAAAAAD5/wYAAAADAAEAAAD5/wUAAAADAAEAAAD5/wQAAAADAAAAAAD5/wcAAAAIAAIAAAD6/wgAAAAFAAIAAAD5/wgAAAABAAEAAAD5/wkAAAABAAEAAAD6/wkAAAABAAEAAAD4/wcAAAAAAAAAAAD7/wIAAAADAAMAAAD4/wgAAAAAAAEAAAD4/wkAAAAAAAEAAAD4/woAAAAAAAEAAAD4/wsAAAAAAAIAAAD5/wwAAAAAAAIAAAD6/w0AAAAAAAIAAAD7/w0AAAABAAIAAAD8/w0AAAABAAIAAAD9/w0AAAABAAIAAAD+/w0AAAABAAIAAAD//w0AAAABAAIAAAAAAA0AAAACAAIAAAAAAAsAAAACAAAAAAAAAAwAAAACAAEAAAD//woAAAACAAEAAAD5/woAAAABAAEAAAD5/wsAAAAGAAEAAAD6/woAAAABAAEAAAD6/wsAAAABAAEAAAD6/wwAAAAGAAEAAAD7/wwAAAABAAEAAAD8/wwAAAABAAEAAAD8/wsAAAABAAEAAAD7/wsAAAABAAEAAAD7/woAAAABAAEAAAD8/woAAAABAAEAAAD9/woAAAABAAEAAAD9/wsAAAABAAEAAAD+/wsAAAABAAEAAAD+/woAAAABAAEAAAD//wsAAAAFAAIAAAD//wwAAAABAAEAAAD+/wwAAAABAAEAAAD9/wwAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAD+/wEAAAABAAAAAAD//wEAAAABAAAAAAAAAAEAAAABAAAAAAABAAEAAAABAAAAAAACAAEAAAACAAAAAAD9/wEAAAAAAAAAAAD+/wIAAAABAAEAAAD//wIAAAABAAEAAAAAAAIAAAABAAEAAAABAAIAAAABAAEAAAACAAIAAAACAAEAAAD9/wIAAAAAAAEAAAD9/wMAAAAAAAIAAAD+/wMAAAABAAIAAAACAAMAAAACAAIAAAD//wMAAAABAAIAAAAAAAMAAAABAAIAAAABAAMAAAABAAIAAAAEAAAAAAAEAAAAAAAFAAAAAAAHAAAAAAAFAAEAAAAHAAMAAAAEAAEAAAAEAAMAAAAIAAMAAAABAAEAAAAJAAMAAAABAAEAAAAKAAMAAAABAAEAAAAKAAQAAAABAAEAAAAJAAQAAAABAAEAAAAIAAQAAAABAAEAAAAHAAIAAAAAAAAAAAAIAAIAAAABAAAAAAAJAAIAAAABAAAAAAAKAAIAAAABAAAAAAALAAIAAAACAAAAAAALAAUAAAACAAIAAAAHAAUAAAAAAAIAAAAIAAUAAAABAAIAAAAJAAUAAAABAAIAAAAKAAUAAAABAAIAAAALAAQAAAACAAEAAAALAAMAAAACAAEAAAAHAAQAAAAAAAEAAAAHAAMAAAAAAAEAAAANAAgAAAACAAMAAAAMAAgAAAABAAMAAAALAAgAAAABAAMAAAAKAAgAAAABAAMAAAAJAAgAAAABAAMAAAAIAAgAAAABAAMAAAAHAAgAAAABAAMAAAAGAAgAAAABAAMAAAAFAAgAAAAAAAMAAAADAAcAAAAHAAAAAAADAAgAAAAHAAMAAAACAAgAAAAEAAMAAAACAAcAAAAEAAAAAAD//wkAAAACAAAAAAD+/wkAAAABAAAAAAD9/wkAAAABAAAAAAD8/wkAAAABAAAAAAD7/wkAAAAFAAIAAAD7/wgAAAACAAAAAAD6/wcAAAACAAAAAAD5/wYAAAADAAEAAAD5/wUAAAADAAEAAAD5/wQAAAADAAAAAAD5/wcAAAAIAAIAAAD6/wgAAAAFAAIAAAD5/wgAAAABAAEAAAD5/wkAAAABAAEAAAD6/wkAAAABAAEAAAD4/wcAAAAAAAAAAAD7/wIAAAADAAMAAAD4/wgAAAAAAAEAAAD4/wkAAAAAAAEAAAD4/woAAAAAAAEAAAD4/wsAAAAAAAIAAAD5/wwAAAAAAAIAAAD6/w0AAAAAAAIAAAD7/w0AAAABAAIAAAD8/w0AAAABAAIAAAD9/w0AAAABAAIAAAD+/w0AAAABAAIAAAD//w0AAAABAAIAAAAAAA0AAAACAAIAAAAAAAsAAAACAAAAAAAAAAwAAAACAAEAAAD//woAAAACAAEAAAD5/woAAAABAAEAAAD5/wsAAAAGAAEAAAD6/woAAAABAAEAAAD6/wsAAAABAAEAAAD6/wwAAAAGAAEAAAD7/wwAAAABAAEAAAD8/wwAAAABAAEAAAD8/wsAAAABAAEAAAD7/wsAAAABAAEAAAD7/woAAAABAAEAAAD8/woAAAABAAEAAAD9/woAAAABAAEAAAD9/wsAAAABAAEAAAD+/wsAAAABAAEAAAD+/woAAAABAAEAAAD//wsAAAAFAAIAAAD//wwAAAABAAEAAAD+/wwAAAABAAEAAAD9/wwAAAABAAEAAAAPAAcAAAAEAAAAAAAQAAYAAAAEAAAAAAARAAUAAAAEAAEAAAARAAQAAAAEAAAAAAASAAQAAAABAAAAAAATAAQAAAABAAAAAAAUAAQAAAABAAAAAAAVAAQAAAACAAAAAAAVAAUAAAACAAEAAAAVAAYAAAACAAEAAAAPAAgAAAAAAAEAAAAPAAkAAAAAAAIAAAAQAAkAAAABAAIAAAARAAkAAAABAAIAAAASAAkAAAABAAIAAAATAAkAAAACAAIAAAAVAAcAAAACAAIAAAAUAAcAAAABAAIAAAATAAgAAAACAAEAAAATAAcAAAAFAAEAAAAQAAgAAAABAAEAAAARAAgAAAABAAEAAAARAAcAAAABAAEAAAASAAcAAAABAAEAAAASAAgAAAABAAEAAAASAAYAAAABAAEAAAASAAUAAAABAAEAAAATAAUAAAABAAEAAAATAAYAAAABAAEAAAAUAAYAAAABAAEAAAAUAAUAAAABAAEAAAAQAAcAAAAGAAIAAAARAAYAAAAGAAIAAAA=")
 tile_set = SubResource("TileSet_jyhfs")
 
 [node name="Bg" type="TileMapLayer" parent="Room" unique_id=799710441]
 z_index = -1
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAJAP//AAAEAAEAAAAJAAAAAAAEAAIAAAAJAAEAAAAEAAMAAAAKAP7/AAAFAAAAAAAKAP//AAAFAAEAAAAKAAAAAAAFAAIAAAAKAAEAAAAFAAMAAAALAP//AAAGAAEAAAALAAAAAAAGAAIAAAALAAEAAAAGAAMAAAADAAYAAAAAAAEAAAABAAAAAAAAAAEAAAD+////AAABAAIAAAD+/wAAAAABAAMAAAAEAP7/AAACAAIAAAAEAP//AAACAAMAAAAFAP7/AAADAAIAAAAFAP//AAADAAMAAAAHAAYAAAAAAAIAAAAHAAcAAAAAAAMAAAAMAAYAAAAAAAIAAAAMAAcAAAAAAAMAAAA=")
+tile_map_data = PackedByteArray("AAAJAP//AAAEAAEAAAAJAAAAAAAEAAIAAAAJAAEAAAAEAAMAAAAKAP7/AAAFAAAAAAAKAP//AAAFAAEAAAAKAAAAAAAFAAIAAAAKAAEAAAAFAAMAAAALAP//AAAGAAEAAAALAAAAAAAGAAIAAAALAAEAAAAGAAMAAAADAAYAAAAAAAEAAAABAAAAAAAAAAEAAAD+////AAABAAIAAAD+/wAAAAABAAMAAAAEAP7/AAACAAIAAAAEAP//AAACAAMAAAAFAP7/AAADAAIAAAAFAP//AAADAAMAAAAHAAYAAAAAAAIAAAAHAAcAAAAAAAMAAAAMAAYAAAAAAAIAAAAMAAcAAAAAAAMAAAAUAAIAAAACAAIAAAAUAAMAAAACAAMAAAAVAAIAAAADAAIAAAAVAAMAAAADAAMAAAA=")
 tile_set = ExtResource("7_85g3d")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1762265889]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("7_tipki")
 
 [node name="Control" type="Control" parent="HUD" unique_id=902233794]
@@ -240,12 +269,90 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="AmmoLabel" type="Label" parent="HUD/Control" unique_id=1142704249]
-layout_mode = 0
-offset_left = 28.0
-offset_top = 28.0
-offset_right = 235.0
-offset_bottom = 70.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -42.0
+offset_right = 271.0
+grow_vertical = 0
 text = "AMMO 50 \\ 50"
 label_settings = SubResource("LabelSettings_o6xl0")
 uppercase = true
-metadata/_edit_use_anchors_ = true
+
+[node name="WpnLvlBar" type="ProgressBar" parent="HUD/Control" unique_id=1970835608]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -70.0
+offset_right = 276.0
+offset_bottom = -43.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_o6xl0")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/background = SubResource("StyleBoxFlat_ya4ey")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eb6dy")
+show_percentage = false
+
+[node name="WpnLvl" type="Label" parent="HUD/Control/WpnLvlBar" unique_id=473314746]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+offset_right = 212.0
+grow_vertical = 0
+text = "LV 1"
+label_settings = SubResource("LabelSettings_trceg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBar" type="ProgressBar" parent="HUD/Control" unique_id=789173092]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -101.0
+offset_right = 284.0
+offset_bottom = -74.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_trceg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a8y0u")
+show_percentage = false
+
+[node name="HP" type="Label" parent="HUD/Control/HPBar" unique_id=94318926]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+offset_right = 284.0
+grow_vertical = 0
+text = "HP 10/10"
+label_settings = SubResource("LabelSettings_trceg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WpnIcon" type="TextureRect" parent="HUD/Control" unique_id=1879283799]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -67.0
+offset_right = 64.0
+offset_bottom = -3.0
+grow_vertical = 0
+texture = SubResource("AtlasTexture_trceg")
+
+[node name="Drone" parent="." unique_id=1691107864 instance=ExtResource("11_ya4ey")]
+position = Vector2(31, 0)
+
+[node name="Drone2" parent="." unique_id=636397704 instance=ExtResource("11_ya4ey")]
+position = Vector2(317, 0)
+
+[node name="Drone3" parent="." unique_id=225617356 instance=ExtResource("11_ya4ey")]
+position = Vector2(294, 55)

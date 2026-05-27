@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0u4olpodj2pv"]
 
 [ext_resource type="SpriteFrames" uid="uid://b8lpvs2g8nws4" path="res://assets/particle_sheet.tres" id="1_bx687"]
-[ext_resource type="Script" uid="uid://5cw7lua21gq5" path="res://scenes/particle_instance.gd" id="2_1gc3r"]
+[ext_resource type="Script" uid="uid://5cw7lua21gq5" path="res://scripts/particle_instance.gd" id="2_1gc3r"]
 
 [node name="ParticleInstance" type="AnimatedSprite2D" unique_id=1735631994]
 texture_filter = 1
