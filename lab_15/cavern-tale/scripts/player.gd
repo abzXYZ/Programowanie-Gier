@@ -9,6 +9,7 @@ const GRAVITY = 500
 var active_weapon : Weapon
 var aiming_direction : Vector2
 var can_use_wpn : bool = true
+var no_ammo_warning : bool = false
 
 var max_hp : int = 10
 var hp : int = max_hp
@@ -28,7 +29,11 @@ func _process(delta: float) -> void:
 		if can_use_wpn and active_weapon.ammo > 0 and active_weapon.current_cooldown <= 0:
 			if Input.is_action_pressed("use"):
 				active_weapon.use()
-				AudioEffect.new()
+				# Reset "no ammo" warning when weapon is used successfully
+				no_ammo_warning = false
+		elif active_weapon.ammo <= 0 and not no_ammo_warning:
+			no_ammo_warning = true
+			AudioManager.play("no_ammo")
 
 func _physics_process(delta: float) -> void:
 	# Gravity
@@ -68,4 +73,8 @@ func _physics_process(delta: float) -> void:
 			can_use_wpn = false
 			sprite.play("look_behind")
 
+	move_and_slide()
+
+func apply_push_force(force : Vector2) -> void:
+	velocity += force
 	move_and_slide()

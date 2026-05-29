@@ -7,9 +7,9 @@ var ammo : int
 var current_ammo_regen_delay : float = 0
 @export var ammo_regen_speed : float		# Time to resupply a single bullet in seconds
 var current_ammo_regen_cooldown : float = 0
-@export var proj_damage = [3,5,7]
-@export var proj_lifetime = [0.5,0.7,0.7]
-@export var proj_speed = 300
+var proj_damage = [3,5,7]
+var proj_lifetime = [0.5,0.7,0.7]
+var proj_speed = [300,325,350]
 
 func _ready() -> void:
 	super()
@@ -50,10 +50,13 @@ func use() -> void:
 	# The WEAPON controls the values, because the projectile *could* be reused
 	proj.damage = proj_damage[floor(level)]
 	proj.lifetime = proj_lifetime[floor(level)]
-	proj.speed = proj_speed
+	proj.speed = proj_speed[floor(level)]
 	get_tree().root.add_child(proj)
 	# Level 3 Movement ability
-	
+	if level == max_level:
+		var push = %Player.aiming_direction * -35
+		print(push)
+		%Player.apply_push_force(push)
 	# FX + SFX
 	flash.visible = true
 	flash.play()
