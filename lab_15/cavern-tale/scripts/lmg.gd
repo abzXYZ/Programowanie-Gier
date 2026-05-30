@@ -10,6 +10,7 @@ var current_ammo_regen_cooldown : float = 0
 var proj_damage = [3,5,7]
 var proj_lifetime = [0.5,0.7,0.7]
 var proj_speed = [300,325,350]
+@export var push_force = -35				# Knockback force of lvl 3 movement ability
 
 func _ready() -> void:
 	super()
@@ -54,8 +55,7 @@ func use() -> void:
 	get_tree().root.add_child(proj)
 	# Level 3 Movement ability
 	if level == max_level:
-		var push = %Player.aiming_direction * -35
-		print(push)
+		var push = %Player.aiming_direction * push_force
 		%Player.apply_push_force(push)
 	# FX + SFX
 	flash.visible = true

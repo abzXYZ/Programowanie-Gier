@@ -275,6 +275,11 @@ position = Vector2(294, 55)
 [node name="Drone4" parent="Room" unique_id=1691107864 instance=ExtResource("11_ya4ey")]
 position = Vector2(127, 173)
 
+[node name="SpawnPos" type="Node2D" parent="Room" unique_id=1335007618]
+position = Vector2(2.556656, -10.790222)
+rotation = 3.1415927
+scale = Vector2(4.5001183, -10.499984)
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1762265889]
 unique_name_in_owner = true
 script = ExtResource("7_tipki")
@@ -372,6 +377,17 @@ offset_right = 80.0
 offset_bottom = -19.0
 grow_vertical = 0
 texture = SubResource("AtlasTexture_trceg")
+
+[node name="Fade" type="ColorRect" parent="HUD/Control" unique_id=586299292]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(2.7675182e-07, 0.15695596, 0.2204636, 1)
 
 [node name="Door" type="Area2D" parent="." unique_id=1023422321]
 position = Vector2(89, 116)

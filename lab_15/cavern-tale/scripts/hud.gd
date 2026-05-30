@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var hp_bar : ProgressBar = get_node("Control/HPBar")
 @onready var hp_label : Label = get_node("Control/HPBar/HP")
 @onready var wpn_icon : TextureRect = get_node("Control/WpnIcon")
+@onready var fade : ColorRect = get_node("Control/Fade")
 
 func _update_ammo(ammo : int, max_ammo : int) -> void:
 	ammo_label.text = "AMMO " + str(ammo) + " / " + str(max_ammo)
@@ -27,6 +28,14 @@ func _update_hp(hp : int, max_hp : int) -> void:
 
 func _change_wpn_icon(region_offset : int) -> void:
 	wpn_icon.texture.region = Rect2(region_offset,0,64,64)
+
+func transition(fade_out : bool) -> void:
+	var tween = create_tween()
+	var goal = 1
+	if fade_out:
+		goal = 0
+	tween.tween_property(fade, "modulate:a", goal, 0.3)
+	await tween.finished
 
 func _ready() -> void:
 	SignalBus.ammo_changed.connect(_update_ammo)
