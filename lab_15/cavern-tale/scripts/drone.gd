@@ -3,6 +3,7 @@ extends Enemy
 func _ready() -> void:
 	xp_awarded = 0.75
 	max_hp = 20
+	touch_damage = 2
 	# Hitbox trigger
 	area_entered.connect(_on_area_entered)
 	$AnimatedSprite2D.play()

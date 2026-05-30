@@ -139,6 +139,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(14, 19)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(9, 16)
+
 [node name="Player" type="CharacterBody2D" unique_id=1062531466]
 script = ExtResource("1_g2els")
 
@@ -150,3 +153,10 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363165184]
 position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_g2els")
+
+[node name="InteractionDetector" type="Area2D" parent="." unique_id=1238987984]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionDetector" unique_id=547988316]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_qhqgy")
+debug_color = Color(0.8259432, 0.39797154, 1.92523e-07, 0.41960785)

@@ -29,19 +29,29 @@ func _update_hp(hp : int, max_hp : int) -> void:
 func _change_wpn_icon(region_offset : int) -> void:
 	wpn_icon.texture.region = Rect2(region_offset,0,64,64)
 
-func transition(fade_out : bool) -> void:
+func transition(fadein : bool = true) -> void:
 	var tween = create_tween()
 	var goal = 1
-	if fade_out:
+	if fadein:
 		goal = 0
 	tween.tween_property(fade, "modulate:a", goal, 0.3)
 	await tween.finished
+	SignalBus.hud_transition_finished.emit()
+
+func fade_out() -> void:
+	transition(false)
+	
+func fade_in(_a,_b) -> void:
+	transition(true)
+
 
 func _ready() -> void:
 	SignalBus.ammo_changed.connect(_update_ammo)
 	SignalBus.wpn_level_changed.connect(_update_wpn_lvl)
 	SignalBus.hp_changed.connect(_update_hp)
 	SignalBus.change_wpn_icon.connect(_change_wpn_icon)
+	SignalBus.room_transition_started.connect(fade_out)
+	SignalBus.room_transition_finished.connect(fade_in)
 	# Prepare HP values (it doesn't work otherwise)
 	_update_hp(%Player.hp,%Player.max_hp)
 	visible = true
