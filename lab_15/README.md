@@ -35,6 +35,10 @@ Czcionka: [Ithaca](https://www.fontspace.com/ithaca-font-f144503)
 - Autor: GGBotNet
 - Licencja: SIL Open Font License (OFL)
 
+SFX: [The Fireplace 3.wav](https://freesound.org/people/NoOneIsReal/sounds/387128/)
+- Autor: NoOneIsReal
+- Licencja: Creative Commons 0
+
 SFX (narzędzie): [oplsfxr](https://libadlmidi-js.github.io/examples/oplsfxr.html)
 - Autor: Tony Gies
 
