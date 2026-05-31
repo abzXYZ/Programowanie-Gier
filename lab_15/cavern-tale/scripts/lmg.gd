@@ -37,6 +37,7 @@ func _process(delta: float) -> void:
 		current_ammo_regen_cooldown -= delta
 
 func use() -> void:
+	visible = true
 	# Apply firing cooldown
 	current_cooldown = cooldown
 	ammo -= 1
@@ -58,6 +59,9 @@ func use() -> void:
 		var push = %Player.aiming_direction * push_force
 		%Player.apply_push_force(push)
 	# FX + SFX
+	AudioManager.play("neo_lmg")
 	flash.visible = true
 	flash.play()
-	AudioManager.play("neo_lmg")
+	await flash.animation_finished
+	visible = false
+	

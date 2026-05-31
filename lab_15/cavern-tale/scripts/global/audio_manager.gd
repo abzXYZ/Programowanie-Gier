@@ -1,9 +1,29 @@
 extends Node
 
 var sounds : Dictionary = {}
+const SFX := {
+	"neo_lmg":			"res://assets/sounds/neo_lmg.wav",
+	"heat_up":			"res://assets/sounds/heat_up.wav",
+	"explosion":		"res://assets/sounds/explosion.wav",
+	"jump":				"res://assets/sounds/jump.wav",
+	"land":				"res://assets/sounds/land.wav",
+	"menu":				"res://assets/sounds/menu.wav",
+	"error":			"res://assets/sounds/error.wav",
+	"no_ammo":			"res://assets/sounds/no_ammo.wav",
+	"rl":				"res://assets/sounds/rl.wav",
+	"shotgun":			"res://assets/sounds/shotgun.wav",
+	"shotgun_reload":	"res://assets/sounds/shotgun_reload.wav",
+	"impact":			"res://assets/sounds/impact.wav",
+	"death":			"res://assets/sounds/death.wav",
+	"playerdeath":		"res://assets/sounds/playerdeath.wav",
+	"smoke":			"res://assets/sounds/smoke.wav",
+	"fireplace":		"res://assets/sounds/fireplace.ogg"
+}
 
-const SFX_DIR := "res://assets/sounds/"
-var SFX := {}
+const MUSIC := {
+	"crackling":	"res://assets/sounds/music/crackling.ogg",
+}
+
 
 func play(audio_name: String, volume_db: float = 0.0) -> void:
 	if sounds.has(audio_name):
@@ -19,32 +39,31 @@ func play_once(audio_name: String, volume_db: float = 0.0) -> void:
 	else:
 		push_warning("⚠ ERROR PLAYING SOUND " + audio_name)
 
-# Function to scan assets/sounds directory for SFX
-func _load_sfx_directory() -> void:
-	var dir := DirAccess.open(SFX_DIR)
-	if not dir:
-		push_warning("⚠ COULD NOT OPEN SOUNDS DIRECTORY")
-		return
+func stop_audio(audio_name: String) -> void:
+	if sounds.has(audio_name):
+		sounds[audio_name].stop()
+	else:
+		push_warning("⚠ ERROR PLAYING SOUND " + audio_name)
 
-	dir.list_dir_begin()
-	var file_name := dir.get_next()
-	while file_name != "":
-		# Is it a file and not a subdirectory?
-		if not dir.current_is_dir():
-			# Only check proper audio files
-			var ext := file_name.get_extension().to_lower()
-			if ext in ["wav", "ogg", "mp3"]:
-				# Extract only the filename, no extension
-				var key := file_name.get_basename()
-				var path := SFX_DIR + file_name
-				SFX[key] = path
-		file_name = dir.get_next()
-	dir.list_dir_end()
+func fade_out_audio(audio_name : String) -> void:
+	if sounds.has(audio_name):
+		var music_fade := create_tween()
+		music_fade.tween_property(sounds[audio_name], "volume_db", -80.0, 1.5) \
+		.set_ease(Tween.EASE_IN) \
+		.set_trans(Tween.TRANS_CUBIC)
+		await music_fade.finished
+		sounds[audio_name].stop()
+	else:
+		push_warning("⚠ ERROR FADING SOUND " + audio_name)
 
 func _ready() -> void:
-	_load_sfx_directory()
 	for key in SFX:
 		var player := AudioStreamPlayer.new()
 		player.stream = load(SFX[key])
+		add_child(player)
+		sounds[key] = player
+	for key in MUSIC:
+		var player := AudioStreamPlayer.new()
+		player.stream = load(MUSIC[key])
 		add_child(player)
 		sounds[key] = player

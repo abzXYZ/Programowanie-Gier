@@ -22,11 +22,15 @@ func use() -> void:
 	pass
 
 func level_up(xp : float) -> void:
-	if level < max_level:
-		# Play sound on LEVEL UP
+	# Only act upon level_up if level below max_level unless the xp is negative
+	if level < max_level or xp < 0:
+		# Play sound on LEVEL UP or LEVEL DOWN
 		if floor(level+xp)>floor(level):
 			AudioManager.play("heat_up")
+		elif floor(level+xp)<floor(level):
+			AudioManager.play("error")
 		print("XP gained -> " + str(xp))
-		level = min(level + xp, max_level)
+		# Don't go below 0 and above max_level
+		level = clamp(level + xp, 0, max_level)
 		print("Current level -> " + str(floor(level)) + " (" + str(level) + ")")
 		SignalBus.wpn_level_changed.emit(level,max_level)

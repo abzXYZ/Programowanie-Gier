@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://b2q1v1byn3725" path="res://assets/images/weapons.png" id="2_choun"]
 [ext_resource type="Script" uid="uid://w0fni1xh8x8m" path="res://scripts/lmg.gd" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dc62k8262ialc" path="res://scenes/bullet.tscn" id="5_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://c8bnrevilef3s" path="res://scenes/rooms/debug/itemtest.tscn" id="6_85g3d"]
 [ext_resource type="Texture2D" uid="uid://c2j0htuxp84sy" path="res://assets/images/particles.png" id="6_tefeu"]
 [ext_resource type="FontFile" uid="uid://bill4gukq7d2v" path="res://assets/Ithaca font/Ithaca-LVB75.ttf" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://chtqy5x27nrn4" path="res://scripts/hud.gd" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://bg68wrrgy1y4r" path="res://scenes/rooms/safe/starterroom.tscn" id="10_choun"]
 [ext_resource type="Texture2D" uid="uid://df0hj8dtv5xyh" path="res://assets/images/weapon icons.png" id="11_eb6dy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
@@ -62,7 +62,7 @@ shadow_offset = Vector2(0.5, 0.5)
 bg_color = Color(0.121876836, 0.121876836, 0.121876836, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
-bg_color = Color(0.85882354, 0.39215687, 0.21568628, 1)
+bg_color = Color(0.64845514, 0.32772976, 0.21588534, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_trceg"]
 font = ExtResource("7_o6xl0")
@@ -84,14 +84,16 @@ script = ExtResource("1_choun")
 [node name="Player" parent="." unique_id=1062531466 instance=ExtResource("1_o5qli")]
 unique_name_in_owner = true
 texture_filter = 1
+position = Vector2(-8, 16)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=89329430]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="LMG" type="Sprite2D" parent="Player" unique_id=644070914]
+visible = false
 z_index = 1
-position = Vector2(0, 12)
+position = Vector2(-1, 12)
 texture = SubResource("AtlasTexture_ya4ey")
 script = ExtResource("2_tbgi4")
 ammo_regen_speed = 0.5
@@ -103,8 +105,6 @@ metadata/_custom_type_script = "uid://do44ti8bx7o68"
 visible = false
 sprite_frames = SubResource("SpriteFrames_ya4ey")
 offset = Vector2(-5, 0)
-
-[node name="Room" parent="." unique_id=1336855518 instance=ExtResource("6_85g3d")]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1762265889]
 unique_name_in_owner = true
@@ -149,6 +149,7 @@ theme_override_fonts/font = ExtResource("7_o6xl0")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/background = SubResource("StyleBoxFlat_ya4ey")
 theme_override_styles/fill = SubResource("StyleBoxFlat_eb6dy")
+max_value = 1.0
 show_percentage = false
 
 [node name="WpnLvl" type="Label" parent="HUD/Control/WpnLvlBar" unique_id=473314746]
@@ -216,3 +217,5 @@ offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(2.7675182e-07, 0.15695596, 0.2204636, 1)
+
+[node name="Room" parent="." unique_id=1336855518 instance=ExtResource("10_choun")]

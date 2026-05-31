@@ -12,9 +12,9 @@ func _update_ammo(ammo : int, max_ammo : int) -> void:
 	ammo_label.text = "AMMO " + str(ammo) + " / " + str(max_ammo)
 
 func _update_wpn_lvl(lvl : float, max_lvl : float) -> void:
-	# Set progress bar's max value as next level
-	lvl_bar.max_value = min(ceil(lvl),max_lvl)
-	lvl_bar.value = lvl
+	lvl_bar.value = 1
+	if lvl < max_lvl:
+		lvl_bar.value = lvl - floor(lvl)
 	# Display weapon level on the bar (display as int to cut the .0)
 	var text = "LV " + str(int(floor(lvl) + 1))
 	if lvl == max_lvl:
@@ -29,12 +29,12 @@ func _update_hp(hp : int, max_hp : int) -> void:
 func _change_wpn_icon(region_offset : int) -> void:
 	wpn_icon.texture.region = Rect2(region_offset,0,64,64)
 
-func transition(fadein : bool = true) -> void:
+func transition(fadein : bool = true, time : float = 0.3) -> void:
 	var tween = create_tween()
 	var goal = 1
 	if fadein:
 		goal = 0
-	tween.tween_property(fade, "modulate:a", goal, 0.3)
+	tween.tween_property(fade, "modulate:a", goal, time)
 	await tween.finished
 	SignalBus.hud_transition_finished.emit()
 

@@ -3,30 +3,38 @@ extends CharacterBody2D
 const SPEED = 100
 const JUMP_VELOCITY = -180
 const GRAVITY = 500
+const INVULN_TIME = 1.5		# Invulnerability time after getting damaged in seconds
  
 @onready var sprite = $AnimatedSprite2D
-@onready var interaction_check = $InteractionDetector
+@onready var hitbox = $Hitbox
 
 enum State { MOBILE, IMMOBILE, STOPPED }
 var active_weapon : Weapon
 var aiming_direction : Vector2
-var can_use_wpn : bool = true
-var no_ammo_warning : bool = false
+var can_use_wpn : bool
+var no_ammo_warning : bool
+var invuln : float
 
-var current_state : State = State.MOBILE
+var current_state : State
 var max_hp : int = 10
-var hp : int = max_hp
+var hp : int
 
-func _switch_weapon(weapon) -> void:
-	active_weapon = weapon
-
-func _ready() -> void:
+func _variables_setup() -> void:
 	aiming_direction = Vector2(-1,0)
-	_switch_weapon($LMG)
-	SignalBus.room_transition_started.connect(freeze)
-	SignalBus.room_transition_finished.connect(_room_transition_finished)
+	can_use_wpn = true
+	no_ammo_warning = false
+	hp = max_hp
+	invuln = 0
+	current_state = State.MOBILE
+	active_weapon = $LMG
 	# Emit signals so that the HUD gets updated
 	SignalBus.hp_changed.emit(hp,max_hp)
+
+func _ready() -> void:
+	SignalBus.room_transition_started.connect(freeze)
+	SignalBus.room_transition_finished.connect(_room_transition_finished)
+	hitbox.area_entered.connect(_hitbox_check)
+	_variables_setup()
 
 func freeze() -> void:
 	print("Player immobilized")
@@ -41,16 +49,16 @@ func stop() -> void:
 	current_state = State.STOPPED
 
 # FINITE STATE MACHINE [!]
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	match current_state:
 		State.MOBILE:
-			_mobile_state()
+			_mobile_state(delta)
 		State.IMMOBILE:
-			pass
+			_immobile_state(delta)
 		State.STOPPED:
 			pass
 
-func _mobile_state() -> void:
+func _mobile_state(delta : float) -> void:
 	# Weapon firing
 	if active_weapon:
 		if can_use_wpn and active_weapon.ammo > 0 and active_weapon.current_cooldown <= 0:
@@ -61,6 +69,16 @@ func _mobile_state() -> void:
 		elif active_weapon.ammo <= 0 and not no_ammo_warning:
 			no_ammo_warning = true
 			AudioManager.play("no_ammo")
+	_handle_ivuln_time(delta)
+		
+func _immobile_state(delta : float) -> void:
+	_handle_ivuln_time(delta)
+
+func _handle_ivuln_time(delta : float) -> void:
+	if invuln > 0:
+		invuln -= delta
+	if invuln <= 0:
+		sprite.modulate = Color(1, 1, 1)
 
 # FINITE STATE MACHINE [!]
 func _physics_process(delta: float) -> void:
@@ -127,16 +145,26 @@ func _handle_gravity(delta : float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	if global_position.y >= 500:
-		# KILL! KILL! KILL!
-		take_damage(hp)
+		# Drain all hp and ignore invuln
+		take_damage(hp,true)
 
 func apply_push_force(force : Vector2) -> void:
 	velocity += force
+	print(velocity)
 	move_and_slide()
+
+func _apply_invuln(inv_time : float = INVULN_TIME) -> void:
+	invuln = inv_time
+	sprite.modulate = Color(0.685, 0.351, 0.234)
+
+func _hitbox_check(area : Node) -> void:
+	# Getting damaged by enemy - takes damage, applies invuln and brings weapon level down
+	if area is Enemy:
+		take_damage(area.touch_damage)
 
 func _try_interact() -> void:
 	# Checks for all objects within the interaction detector and calls interact() on the first one.
-	for area in interaction_check.get_overlapping_areas():
+	for area in hitbox.get_overlapping_areas():
 		if area is Interactable:
 			area.interact()
 			return
@@ -145,9 +173,14 @@ func _room_transition_finished(_room : Node2D, entry_point : Vector2) -> void:
 	global_position = entry_point
 	resume_movement()
 
-func take_damage(amount: int) -> void:
-	hp = max(0, hp - amount)
-	SignalBus.hp_changed.emit(hp, max_hp)
+func take_damage(amount : int, ignore_invuln : bool = false, invuln_time : float = INVULN_TIME) -> void:
+	# Only take damage if not in the state of STOPPED + out of invuln or ignore_invuln is passed
+	if not current_state == State.STOPPED and (ignore_invuln or invuln <= 0):
+		hp = max(0, hp - amount)
+		active_weapon.level_up(-1)
+		SignalBus.hp_changed.emit(hp, max_hp)
+		_apply_invuln(invuln_time)
 	if hp <= 0:
+		AudioManager.play("playerdeath")
 		stop()
-		
+		SignalBus.player_died.emit()

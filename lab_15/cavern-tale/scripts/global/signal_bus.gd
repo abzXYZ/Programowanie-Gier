@@ -16,3 +16,5 @@ signal room_transition_started
 signal room_transition_finished(prepared_room : Node2D, entry_point : Vector2)
 @warning_ignore("unused_signal")
 signal hud_transition_finished
+@warning_ignore("unused_signal")
+signal player_died

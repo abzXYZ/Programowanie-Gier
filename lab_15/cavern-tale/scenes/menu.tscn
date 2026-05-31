@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://da1fx1y5wip0u"]
+
+[ext_resource type="Script" uid="uid://dvqsth4bh4a7a" path="res://scripts/main_menu.gd" id="1_4ytvr"]
+[ext_resource type="FontFile" uid="uid://8ias85lwp78p" path="res://assets/PixelatedEleganceRegular-ovawB.ttf" id="1_yqeox"]
+[ext_resource type="FontFile" uid="uid://bill4gukq7d2v" path="res://assets/Ithaca font/Ithaca-LVB75.ttf" id="2_vjb58"]
+[ext_resource type="Texture2D" uid="uid://cqoq05qjunwov" path="res://assets/images/flame.png" id="3_mhnvy"]
+[ext_resource type="TileSet" uid="uid://bw4motrju8bmg" path="res://assets/indoors.tres" id="4_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://c2j0htuxp84sy" path="res://assets/images/particles.png" id="6_g3eks"]
+
+[sub_resource type="Gradient" id="Gradient_g3eks"]
+offsets = PackedFloat32Array(0, 0.38787878, 0.9818182)
+colors = PackedColorArray(0.21398926, 0.31809095, 0.23866415, 1, 0, 0.15686275, 0.21960784, 1, 0, 0.02265366, 0.06678642, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_con2f"]
+gradient = SubResource("Gradient_g3eks")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_mhnvy"]
+font = ExtResource("1_yqeox")
+font_size = 84
+outline_color = Color(0, 0.43096673, 0.39436322, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_con2f"]
+font = ExtResource("2_vjb58")
+font_size = 48
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3eks"]
+atlas = ExtResource("3_mhnvy")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v86rl"]
+atlas = ExtResource("3_mhnvy")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13sgg"]
+atlas = ExtResource("3_mhnvy")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6lef"]
+atlas = ExtResource("6_g3eks")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70i5f"]
+atlas = ExtResource("6_g3eks")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mj5lg"]
+atlas = ExtResource("6_g3eks")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufwb2"]
+atlas = ExtResource("6_g3eks")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cdou"]
+atlas = ExtResource("6_g3eks")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i6lef"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3eks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v86rl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13sgg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6lef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70i5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mj5lg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufwb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cdou")
+}],
+"loop": false,
+"name": &"smoke",
+"speed": 12.0
+}]
+
+[node name="Menu" type="Control" unique_id=241378368]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ytvr")
+
+[node name="bg" type="TextureRect" parent="." unique_id=1278596161]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_con2f")
+
+[node name="Title" type="Label" parent="." unique_id=1054529886]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -172.0
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ColdCore"
+label_settings = SubResource("LabelSettings_mhnvy")
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="." unique_id=1854828815]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = 89.0
+offset_right = 106.0
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+
+[node name="Label" type="Label" parent="Start" unique_id=1819361886]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Begin"
+label_settings = SubResource("LabelSettings_con2f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TileContainer" type="Control" parent="." unique_id=183332331]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 16.0
+offset_bottom = 16.247986
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TileContainer" unique_id=1288026078]
+position = Vector2(-16, -16)
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0)
+tile_set = ExtResource("4_4ytvr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileContainer" unique_id=1772960789]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_i6lef")
+animation = &"smoke"
+autoplay = "default"
+
+[node name="fade" type="ColorRect" parent="." unique_id=385535742]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
