@@ -8,8 +8,17 @@
 [ext_resource type="Texture2D" uid="uid://c2j0htuxp84sy" path="res://assets/images/particles.png" id="6_tefeu"]
 [ext_resource type="FontFile" uid="uid://bill4gukq7d2v" path="res://assets/Ithaca font/Ithaca-LVB75.ttf" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://chtqy5x27nrn4" path="res://scripts/hud.gd" id="7_tipki"]
+[ext_resource type="Texture2D" uid="uid://cn2rrg8crta25" path="res://assets/images/meter.png" id="10_0ld40"]
 [ext_resource type="PackedScene" uid="uid://bg68wrrgy1y4r" path="res://scenes/rooms/safe/starterroom.tscn" id="10_choun"]
+[ext_resource type="Texture2D" uid="uid://ds82uq8gmgjen" path="res://assets/images/weather.png" id="10_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://df0hj8dtv5xyh" path="res://assets/images/weapon icons.png" id="11_eb6dy"]
+[ext_resource type="Script" uid="uid://d2fqstm8la5pa" path="res://scenes/parallax_bg.gd" id="13_0ld40"]
+[ext_resource type="Texture2D" uid="uid://qggkohxq3jvg" path="res://assets/images/By_PWL/landscape_0005_6_background.png" id="13_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://b5x1pshvnvlnu" path="res://assets/images/By_PWL/landscape_0004_5_clouds.png" id="14_0ld40"]
+[ext_resource type="Texture2D" uid="uid://ci4vine5tdue0" path="res://assets/images/By_PWL/landscape_0003_4_mountain.png" id="15_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://dcntuw7ly7h17" path="res://assets/images/By_PWL/landscape_0002_3_trees.png" id="16_yc10j"]
+[ext_resource type="Texture2D" uid="uid://j5x1wckclucj" path="res://assets/images/By_PWL/landscape_0001_2_trees.png" id="17_jscy8"]
+[ext_resource type="Texture2D" uid="uid://6qkl01uef3f3" path="res://assets/images/By_PWL/landscape_0000_1_trees.png" id="18_pm3ni"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
 atlas = ExtResource("2_choun")
@@ -77,6 +86,10 @@ bg_color = Color(0.698595, 0.22426587, 0.28139022, 1)
 [sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
 atlas = ExtResource("11_eb6dy")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
+atlas = ExtResource("10_ya4ey")
+region = Rect2(192, 0, 64, 64)
 
 [node name="Main" type="Node2D" unique_id=1985642855]
 script = ExtResource("1_choun")
@@ -218,4 +231,63 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(2.7675182e-07, 0.15695596, 0.2204636, 1)
 
+[node name="BlizzardTimer" type="TextureProgressBar" parent="HUD" unique_id=1061957250]
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -144.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("10_0ld40")
+
+[node name="WeatherIcon" type="TextureRect" parent="HUD/BlizzardTimer" unique_id=1938274831]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_eb6dy")
+
 [node name="Room" parent="." unique_id=1336855518 instance=ExtResource("10_choun")]
+
+[node name="ParallaxBg" type="Parallax2D" parent="." unique_id=593275571]
+modulate = Color(0.694, 0.973, 1, 1)
+z_index = -10
+texture_filter = 1
+scale = Vector2(2, 2)
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(1, -285)
+screen_offset = Vector2(0, -50)
+script = ExtResource("13_0ld40")
+
+[node name="bg" type="Sprite2D" parent="ParallaxBg" unique_id=1404823206]
+z_index = -10
+texture = ExtResource("13_dp3eg")
+
+[node name="clouds" type="Sprite2D" parent="ParallaxBg" unique_id=673234980]
+texture = ExtResource("14_0ld40")
+
+[node name="mountains" type="Sprite2D" parent="ParallaxBg" unique_id=2116951599]
+texture = ExtResource("15_gqmmt")
+
+[node name="trees" type="Sprite2D" parent="ParallaxBg" unique_id=1729364999]
+texture = ExtResource("16_yc10j")
+
+[node name="trees2" type="Sprite2D" parent="ParallaxBg" unique_id=661679087]
+texture = ExtResource("17_jscy8")
+
+[node name="trees3" type="Sprite2D" parent="ParallaxBg" unique_id=2142157702]
+texture = ExtResource("18_pm3ni")

@@ -4,6 +4,7 @@ extends Interactable
 @export_file("*.tscn") var next_room_path : String
 @export var closed : bool = false
 @onready var sprite : Sprite2D = $Sprite2D
+@export var safehouse_entrance : bool = false
 
 func _ready() -> void:
 	if closed:
@@ -17,4 +18,5 @@ func interact() -> void:
 	if next_room == null:
 		push_error("⚠ NO ROOM RESOURCE FOUND!")
 		return
+	RoomManager.set_safehouse_status(safehouse_entrance)
 	RoomManager.enter_room(next_room)

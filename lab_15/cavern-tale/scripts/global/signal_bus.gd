@@ -18,3 +18,11 @@ signal room_transition_finished(prepared_room : Node2D, entry_point : Vector2)
 signal hud_transition_finished
 @warning_ignore("unused_signal")
 signal player_died
+@warning_ignore("unused_signal")
+signal safehouse_status_changed(is_in_safehouse : bool)
+@warning_ignore("unused_signal")
+signal fireplace_lit
+@warning_ignore("unused_signal")
+signal blizzard_timer_changed()
+@warning_ignore("unused_signal")
+signal blizzard_damage(damage : int)

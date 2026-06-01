@@ -1,0 +1,117 @@
+[gd_scene format=4 uid="uid://jftqfgwieyc7"]
+
+[ext_resource type="Texture2D" uid="uid://drfhtpawnsuot" path="res://assets/images/By_Eduardo_Scarpato/02 - Decorations.png" id="1_fltkk"]
+[ext_resource type="TileSet" uid="uid://bw4motrju8bmg" path="res://assets/indoors.tres" id="2_lritj"]
+[ext_resource type="PackedScene" uid="uid://qtctx4shv8gx" path="res://scenes/door.tscn" id="3_qtibs"]
+[ext_resource type="Texture2D" uid="uid://cqoq05qjunwov" path="res://assets/images/flame.png" id="4_lritj"]
+[ext_resource type="Script" uid="uid://c2poa3q2u4edr" path="res://scripts/fireplace.gd" id="4_qtibs"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bdral"]
+texture = ExtResource("1_fltkk")
+5:0/0 = 0
+0:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_h0e1w"]
+sources/0 = SubResource("TileSetAtlasSource_bdral")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtibs"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdral"]
+atlas = ExtResource("4_lritj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0e1w"]
+atlas = ExtResource("4_lritj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiujj"]
+atlas = ExtResource("4_lritj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwtju"]
+atlas = ExtResource("4_lritj")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m8jo3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdral")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0e1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiujj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwtju")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 8.0
+}]
+
+[node name="Room" type="Node2D" unique_id=1856540634]
+
+[node name="Fg" type="TileMapLayer" parent="." unique_id=843069923]
+z_index = 1
+texture_filter = 1
+tile_set = SubResource("TileSet_h0e1w")
+
+[node name="Terrain" type="TileMapLayer" parent="." unique_id=1181604198]
+texture_filter = 1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD9/wIAAAABAAAAAAD+/wIAAAABAAAAAAD//wIAAAABAAAAAAAAAAIAAAABAAAAAAABAAIAAAABAAAAAAACAAIAAAABAAAAAAACAAMAAAABAAIAAAABAAMAAAABAAIAAAAAAAMAAAABAAIAAAD//wMAAAABAAIAAAD+/wMAAAABAAIAAAD9/wMAAAABAAIAAAADAAMAAAABAAIAAAADAAIAAAABAAEAAAD8////AAABAAEAAAD8/wAAAAACAAEAAAD8/wEAAAACAAEAAAD8/wIAAAABAAEAAAD8/wMAAAABAAIAAAD9////AAABAAIAAAACAP//AAABAAIAAAADAP//AAABAAEAAAAEAP//AAACAAEAAAADAAAAAAAAAAEAAAADAAEAAAAAAAEAAAAEAAIAAAACAAEAAAAEAAEAAAACAAEAAAAEAAAAAAACAAEAAAAEAAMAAAACAAIAAAAEAP7/AAACAAAAAAADAP7/AAABAAEAAAACAP7/AAABAAEAAAD9//7/AAABAAEAAAD8//7/AAABAAEAAAD7//7/AAAAAAAAAAD7////AAAAAAEAAAD7/wAAAAAAAAEAAAD7/wEAAAAAAAEAAAD7/wIAAAAAAAEAAAD7/wMAAAAAAAIAAAD8//3/AAAAAAAAAAD9//3/AAABAAEAAAD+//3/AAABAAEAAAABAP3/AAABAAEAAAACAP3/AAABAAEAAAADAP3/AAACAAAAAAD9//z/AAAAAAAAAAD+//z/AAABAAEAAAD///z/AAABAAEAAAAAAPz/AAABAAEAAAABAPz/AAABAAEAAAACAPz/AAACAAAAAAD+//v/AAAAAAAAAAD///v/AAABAAEAAAAAAPv/AAABAAEAAAABAPv/AAACAAAAAAD///r/AAAAAAAAAAAAAPr/AAACAAAAAAA=")
+tile_set = ExtResource("2_lritj")
+
+[node name="Bg" type="TileMapLayer" parent="." unique_id=401946931]
+z_index = -1
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD+/wEAAAADAAEAAAD9/wEAAAADAAAAAAD9/wAAAAADAAAAAAD+/wAAAAADAAAAAAD//wAAAAADAAAAAAD//wEAAAADAAAAAAAAAAAAAAADAAAAAAAAAAEAAAADAAAAAAABAAAAAAADAAAAAAABAAEAAAADAAAAAAACAAEAAAADAAAAAAACAAAAAAADAAAAAAD///7/AAAEAAAAAAD/////AAAEAAEAAAAAAP7/AAAFAAAAAAAAAP//AAAFAAEAAAD+////AAADAAAAAAD+//7/AAADAAAAAAD///3/AAADAAAAAAAAAP3/AAADAAAAAAABAP7/AAADAAAAAAABAP//AAADAAAAAAA=")
+tile_set = ExtResource("2_lritj")
+
+[node name="SpawnPos" type="Node2D" parent="." unique_id=1231862250]
+position = Vector2(39.999996, 20)
+rotation = 3.1415927
+scale = Vector2(4.5001183, -10.499984)
+
+[node name="Door" parent="." unique_id=771680102 instance=ExtResource("3_qtibs")]
+position = Vector2(40, 20)
+next_room_path = "uid://c8bnrevilef3s"
+closed = true
+
+[node name="Fireplace" type="Area2D" parent="." unique_id=1459005727]
+texture_filter = 1
+script = ExtResource("4_qtibs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fireplace" unique_id=343990018]
+position = Vector2(-24, 24)
+shape = SubResource("RectangleShape2D_qtibs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fireplace" unique_id=309516172]
+position = Vector2(-24, 24)
+sprite_frames = SubResource("SpriteFrames_m8jo3")

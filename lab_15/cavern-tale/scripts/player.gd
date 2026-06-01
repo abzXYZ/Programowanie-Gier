@@ -33,6 +33,7 @@ func _variables_setup() -> void:
 func _ready() -> void:
 	SignalBus.room_transition_started.connect(freeze)
 	SignalBus.room_transition_finished.connect(_room_transition_finished)
+	SignalBus.blizzard_damage.connect(_take_blizzard_damage)
 	hitbox.area_entered.connect(_hitbox_check)
 	_variables_setup()
 
@@ -150,7 +151,6 @@ func _handle_gravity(delta : float) -> void:
 
 func apply_push_force(force : Vector2) -> void:
 	velocity += force
-	print(velocity)
 	move_and_slide()
 
 func _apply_invuln(inv_time : float = INVULN_TIME) -> void:
@@ -172,6 +172,10 @@ func _try_interact() -> void:
 func _room_transition_finished(_room : Node2D, entry_point : Vector2) -> void:
 	global_position = entry_point
 	resume_movement()
+
+func _take_blizzard_damage(amount : int) -> void:
+	# Blizzard damage - predefined amount, ignore current invuln and don't apply invuln
+	take_damage(amount,true,0)
 
 func take_damage(amount : int, ignore_invuln : bool = false, invuln_time : float = INVULN_TIME) -> void:
 	# Only take damage if not in the state of STOPPED + out of invuln or ignore_invuln is passed

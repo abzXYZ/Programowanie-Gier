@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bw4motrju8bmg" path="res://assets/indoors.tres" id="2_pqdar"]
 [ext_resource type="PackedScene" uid="uid://qtctx4shv8gx" path="res://scenes/door.tscn" id="5_m4fjt"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qb168"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_172y0"]
 texture = ExtResource("1_pqdar")
 5:0/0 = 0
 0:1/0 = 0
@@ -27,7 +27,7 @@ texture = ExtResource("1_pqdar")
 6:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_tbgi4"]
-sources/0 = SubResource("TileSetAtlasSource_qb168")
+sources/0 = SubResource("TileSetAtlasSource_172y0")
 
 [node name="Room" type="Node2D" unique_id=1336855518]
 

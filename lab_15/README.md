@@ -5,7 +5,7 @@ Gra utworzona została w silniku Godot 4.6.1. Jest to platformówka action-adven
 
 ## Instrukcja
 Uruchomienie:
-*TBD*
+Pobrać pliki i zaimportować do edytora Godot plik `cavern-tale/project.godot`
 Sterowanie:
 - Ruch lewo/prawo - strzałki lewo/prawo
 - Skok - **Z**
@@ -16,7 +16,7 @@ Sterowanie:
 Gra nie jest klonem jednej, czy drugiej gry. Łączy wybrane aspekty obu gier, aby stworzyć coś nowego. W grze nacisk kładziony jest przede wszystkim na **poruszanie się po poziomach przy pomocy swojego arsenału**, inspirowane bronią *Machine Gun* z Cave Story, co bardzo dobrze komplementuje mechanikę poszukiwania schronienia zanim upłynie czas z Rain World.
 
 ## Znane bugi i ograniczenia
-N/A
+- Czasami gra nie zarejestruje próby interakcji z drzwiami
 
 ## Źródła assetów
 Soundfont: [Module'90 Atmospheric Edition](https://www.musical-artifacts.com/artifacts/5417)
@@ -26,6 +26,10 @@ Soundfont: [Module'90 Atmospheric Edition](https://www.musical-artifacts.com/art
 Tileset: [Snowland](https://eduardscarpato.itch.io/snowland-gameboy-tileset-16x16)
 - Autor: Eduardo Scarpato
 - Licencja: *„This asset pack can be used in free and commercial projects. Credit is not required, but appreciated.”*
+
+Tło in-game: [Seamless HD landscape in parts](https://opengameart.org/content/seamless-hd-landscape-in-parts)
+- Autor: PWL
+- Licencja: CC0
 
 Czcionka: [Pixelated Elegance](https://www.fontspace.com/pixelated-elegance-font-f126145)
 - Autor: GGBotNet

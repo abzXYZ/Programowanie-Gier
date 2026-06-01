@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d0e4oc7kknl2n"]
 
-[ext_resource type="Script" uid="uid://c2qgw4gis3kmj" path="res://scenes/death_screen.gd" id="1_dwo6e"]
+[ext_resource type="Script" uid="uid://c2qgw4gis3kmj" path="res://scripts/death_screen.gd" id="1_dwo6e"]
 [ext_resource type="FontFile" uid="uid://8ias85lwp78p" path="res://assets/PixelatedEleganceRegular-ovawB.ttf" id="1_uyutr"]
 [ext_resource type="FontFile" uid="uid://bill4gukq7d2v" path="res://assets/Ithaca font/Ithaca-LVB75.ttf" id="3_mqh5l"]
 

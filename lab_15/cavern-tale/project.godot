@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 SignalBus="*uid://bagnqr4rsucpo"
 AudioManager="*uid://nunh0i2hubrc"
 RoomManager="*uid://cm85uw4a26chk"
+Blizzard="*uid://bxfeuv6g4iiqm"
 
 [file_customization]
 

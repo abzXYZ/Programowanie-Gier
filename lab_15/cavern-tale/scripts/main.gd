@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func _add_room(room : Node2D,_entry_point : Vector2) -> void:
 	add_child(room)
-
+	
 func _intro() -> void:
 	_fade.modulate.a = 1.0
 	%HUD.transition(true,1)
