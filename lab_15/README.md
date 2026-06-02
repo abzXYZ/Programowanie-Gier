@@ -1,7 +1,7 @@
 # Lab 15 - Projekt
 
 ## Opis
-Gra utworzona została w silniku Godot 4.6.1. Jest to platformówka action-adventure bazowana na gameplayu z [Cave Story](https://pl.wikipedia.org/wiki/Cave_Story) z inspiracjami z [Rain World](https://en.wikipedia.org/wiki/Rain_World). Celem gry jest przemierzanie poziomów w celu znalezienia schronienia przed nadejściem śnieżycy walcząc przy tym z przeciwnikami i posługując się swoim arsenałem do przemieszczania się.
+Gra utworzona została w silniku Godot 4.6.1. Jest to platformówka action-adventure bazowana na gameplayu z [Cave Story](https://pl.wikipedia.org/wiki/Cave_Story) z inspiracjami z [Rain World](https://en.wikipedia.org/wiki/Rain_World). Celem gry jest przemierzanie poziomów w celu znalezienia schronienia przed nadejściem śnieżycy walcząc przy tym z przeciwnikami. Niszczenie wrogów zwiększa poziom broni, która na maksymalnym poziomie zyskuje silny odrzut, pozwalając na szybsze poruszanie się między poziomami. Otrzymywanie obrażeń zmniejsza poziom broni.
 
 ## Instrukcja
 Uruchomienie:
@@ -13,11 +13,7 @@ Sterowanie:
 - Interakcja - strzałka w dół
 
 ## Opis własnego mechanizmu
-Gra **nie jest klonem** jednej, czy drugiej z wyżej wspomnianych gier. Zamiast tego łączy wybrane aspekty obu gier, aby stworzyć coś nowego. W grze nacisk kładziony jest przede wszystkim na **poruszanie się po poziomach przy pomocy swojego arsenału**, inspirowane bronią *Machine Gun* z Cave Story, co bardzo dobrze komplementuje mechanikę poszukiwania schronienia zanim upłynie czas z Rain World.
-
-Gracz posiada lekki karabin maszynowy, który służy mu głównie do pokonywania wrogów. Po zabiciu wroga poziom broni wzrasta. Po osiągnięciu maksymalnego poziomu broń zyskuje silny odrzut, który pozwala graczowi przemieszczać się szybciej po poziomach poprzez strzelanie pod siebie. Broń traci jeden cały poziom przy otrzymaniu obrażeń.
-
-Głównym celem gry jest trafienie do schronienia przed upływem czasu (nadejściem śnieżycy).
+Gra **nie jest klonem** ani jednej, ani drugiej z wyżej wspomnianych gier. Zamiast tego łączy wybrane aspekty obu z nich, aby stworzyć coś nowego. W grze nacisk kładziony jest przede wszystkim na mechanikę **poruszania się po poziomach przy pomocy swojego arsenału**, inspirowane bronią *Machine Gun* z Cave Story, co bardzo dobrze komplementuje mechanikę **poszukiwania schronienia przed upływem czasu** w postaci śnieżycy, która w momencie nadejścia zaczyna zadawać graczowi 1 punkt obrażeń na sekundę.
 
 ## Znane bugi i ograniczenia
 - Czasami gra nie zarejestruje próby interakcji z drzwiami. Prawdopodobnie jest to problem z małym collision boxem.
