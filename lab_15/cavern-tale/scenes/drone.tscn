@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bh2x2xwvhkqhv" path="res://assets/images/enemies.png" id="1_dil0n"]
 [ext_resource type="Script" uid="uid://dpytknyuvno84" path="res://scripts/drone.gd" id="1_knnud"]
-[ext_resource type="PackedScene" uid="uid://d0u4olpodj2pv" path="res://scenes/particle_instance.tscn" id="2_1r4ts"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eb6dy"]
 size = Vector2(16, 16)
@@ -45,7 +44,6 @@ animations = [{
 
 [node name="Drone" type="Area2D" unique_id=1691107864]
 script = ExtResource("1_knnud")
-particle = ExtResource("2_1r4ts")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1092907422]
 shape = SubResource("RectangleShape2D_eb6dy")

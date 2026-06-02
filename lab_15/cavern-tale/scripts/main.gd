@@ -7,6 +7,7 @@ func _ready() -> void:
 	RoomManager.set_current_room($Room)
 	SignalBus.room_transition_finished.connect(_add_room)
 	SignalBus.player_died.connect(_outro)
+	SignalBus.end_demo.connect(_end_demo)
 	_intro()
 
 func _add_room(room : Node2D,_entry_point : Vector2) -> void:
@@ -24,3 +25,8 @@ func _outro() -> void:
 	tween.tween_property(%Player, "modulate:a", 1.0, 0.5)
 	await tween.finished
 	get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
+	
+func _end_demo() -> void:
+	%HUD.fade_out()
+	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://scenes/end_of_demo_screen.tscn")

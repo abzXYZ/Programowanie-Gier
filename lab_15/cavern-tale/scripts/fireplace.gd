@@ -10,5 +10,8 @@ func _ready() -> void:
 func interact() -> void:
 	if not burning:
 		burning = true
+		AudioManager.play("menu")
 		sprite.play("fire")
-		SignalBus.fireplace_lit.emit()
+		AudioManager.play("fireplace")
+		await get_tree().create_timer(2.0).timeout
+		SignalBus.end_demo.emit()

@@ -1,7 +1,7 @@
 extends Node
 
-const MIN_TIME = 60.0			# Min blizzard countdown in seconds
-const MAX_TIME = 90.0			# Max blizzard countdown in seconds
+const MIN_TIME = 35.0			# Min blizzard countdown in seconds
+const MAX_TIME = 45.0			# Max blizzard countdown in seconds
 const DAMAGE_INTERVAL = 1.0		# Time between damage ticks in seconds
 const DAMAGE : int = 1			# Damage taken per interval
 const BASE_COLOR : Color = Color(0.694, 0.972, 0.839)		# Base color of the "temperature"

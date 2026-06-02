@@ -56,5 +56,5 @@ scale = Vector2(4.5001183, -10.499984)
 
 [node name="Door" parent="." unique_id=771680102 instance=ExtResource("5_m4fjt")]
 position = Vector2(72, 20)
-next_room_path = "uid://c8bnrevilef3s"
+next_room_path = "uid://bpk4803p3uvgx"
 closed = true

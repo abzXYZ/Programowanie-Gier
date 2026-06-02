@@ -1,11 +1,11 @@
 # Lab 15 - Projekt
 
 ## Opis
-Gra utworzona została w silniku Godot 4.6.1. Jest to platformówka action-adventure z elementami Metroidvanii bazowana na [Cave Story](https://pl.wikipedia.org/wiki/Cave_Story) i inspirowana mechanikami oraz stylem [Rain World](https://en.wikipedia.org/wiki/Rain_World). Celem gry jest przemierzanie poziomów w celu znalezienia schronienia przed upływem czasu walcząc przy tym z przeciwnikami i posługując się swoim arsenałem do przemieszczania się.
+Gra utworzona została w silniku Godot 4.6.1. Jest to platformówka action-adventure bazowana na gameplayu z [Cave Story](https://pl.wikipedia.org/wiki/Cave_Story) z inspiracjami z [Rain World](https://en.wikipedia.org/wiki/Rain_World). Celem gry jest przemierzanie poziomów w celu znalezienia schronienia przed nadejściem śnieżycy walcząc przy tym z przeciwnikami i posługując się swoim arsenałem do przemieszczania się.
 
 ## Instrukcja
 Uruchomienie:
-Pobrać pliki i zaimportować do edytora Godot plik `cavern-tale/project.godot`
+Pobrać pliki i zaimportować do edytora Godot plik `cavern-tale/project.godot`. Następnie uruchomić główną scenę (F5).
 Sterowanie:
 - Ruch lewo/prawo - strzałki lewo/prawo
 - Skok - **Z**
@@ -13,10 +13,15 @@ Sterowanie:
 - Interakcja - strzałka w dół
 
 ## Opis własnego mechanizmu
-Gra nie jest klonem jednej, czy drugiej gry. Łączy wybrane aspekty obu gier, aby stworzyć coś nowego. W grze nacisk kładziony jest przede wszystkim na **poruszanie się po poziomach przy pomocy swojego arsenału**, inspirowane bronią *Machine Gun* z Cave Story, co bardzo dobrze komplementuje mechanikę poszukiwania schronienia zanim upłynie czas z Rain World.
+Gra **nie jest klonem** jednej, czy drugiej z wyżej wspomnianych gier. Zamiast tego łączy wybrane aspekty obu gier, aby stworzyć coś nowego. W grze nacisk kładziony jest przede wszystkim na **poruszanie się po poziomach przy pomocy swojego arsenału**, inspirowane bronią *Machine Gun* z Cave Story, co bardzo dobrze komplementuje mechanikę poszukiwania schronienia zanim upłynie czas z Rain World.
+
+Gracz posiada lekki karabin maszynowy, który służy mu głównie do pokonywania wrogów. Po zabiciu wroga poziom broni wzrasta. Po osiągnięciu maksymalnego poziomu broń zyskuje silny odrzut, który pozwala graczowi przemieszczać się szybciej po poziomach poprzez strzelanie pod siebie. Broń traci jeden cały poziom przy otrzymaniu obrażeń.
+
+Głównym celem gry jest trafienie do schronienia przed upływem czasu (nadejściem śnieżycy).
 
 ## Znane bugi i ograniczenia
-- Czasami gra nie zarejestruje próby interakcji z drzwiami
+- Czasami gra nie zarejestruje próby interakcji z drzwiami. Prawdopodobnie jest to problem z małym collision boxem.
+- Gra nie posiada ustawień w menu głównym.
 
 ## Źródła assetów
 Soundfont: [Module'90 Atmospheric Edition](https://www.musical-artifacts.com/artifacts/5417)

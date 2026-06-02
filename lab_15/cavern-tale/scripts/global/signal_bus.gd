@@ -26,3 +26,5 @@ signal fireplace_lit
 signal blizzard_timer_changed()
 @warning_ignore("unused_signal")
 signal blizzard_damage(damage : int)
+@warning_ignore("unused_signal")
+signal end_demo()

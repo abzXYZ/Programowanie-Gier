@@ -12,8 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://bg68wrrgy1y4r" path="res://scenes/rooms/safe/starterroom.tscn" id="10_choun"]
 [ext_resource type="Texture2D" uid="uid://ds82uq8gmgjen" path="res://assets/images/weather.png" id="10_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://df0hj8dtv5xyh" path="res://assets/images/weapon icons.png" id="11_eb6dy"]
-[ext_resource type="Script" uid="uid://d2fqstm8la5pa" path="res://scenes/parallax_bg.gd" id="13_0ld40"]
+[ext_resource type="Script" uid="uid://d2fqstm8la5pa" path="res://scripts/parallax_bg.gd" id="13_0ld40"]
 [ext_resource type="Texture2D" uid="uid://qggkohxq3jvg" path="res://assets/images/By_PWL/landscape_0005_6_background.png" id="13_dp3eg"]
+[ext_resource type="SpriteFrames" uid="uid://dvk7yyv2eadh6" path="res://assets/snow.tres" id="13_gqmmt"]
+[ext_resource type="Script" uid="uid://dcxjcfmolve5t" path="res://scripts/parallax_snow.gd" id="13_yc10j"]
 [ext_resource type="Texture2D" uid="uid://b5x1pshvnvlnu" path="res://assets/images/By_PWL/landscape_0004_5_clouds.png" id="14_0ld40"]
 [ext_resource type="Texture2D" uid="uid://ci4vine5tdue0" path="res://assets/images/By_PWL/landscape_0003_4_mountain.png" id="15_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://dcntuw7ly7h17" path="res://assets/images/By_PWL/landscape_0002_3_trees.png" id="16_yc10j"]
@@ -263,13 +265,30 @@ texture = SubResource("AtlasTexture_eb6dy")
 
 [node name="Room" parent="." unique_id=1336855518 instance=ExtResource("10_choun")]
 
+[node name="ParallaxSnow" type="Parallax2D" parent="." unique_id=504308482]
+texture_repeat = 2
+scale = Vector2(2, 2)
+scroll_scale = Vector2(1.2, 1.2)
+repeat_size = Vector2(128, 128)
+repeat_times = 20
+script = ExtResource("13_yc10j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ParallaxSnow" unique_id=1947793672]
+texture_repeat = 2
+scale = Vector2(1.0710926, 1.0491778)
+sprite_frames = ExtResource("13_gqmmt")
+autoplay = "default"
+frame_progress = 0.04629921
+
 [node name="ParallaxBg" type="Parallax2D" parent="." unique_id=593275571]
 modulate = Color(0.694, 0.973, 1, 1)
 z_index = -10
 texture_filter = 1
 scale = Vector2(2, 2)
 scroll_scale = Vector2(0.5, 0.5)
-scroll_offset = Vector2(1, -285)
+scroll_offset = Vector2(0, -310)
+repeat_size = Vector2(1920, 0)
+repeat_times = 2
 screen_offset = Vector2(0, -50)
 script = ExtResource("13_0ld40")
 
@@ -291,3 +310,13 @@ texture = ExtResource("17_jscy8")
 
 [node name="trees3" type="Sprite2D" parent="ParallaxBg" unique_id=2142157702]
 texture = ExtResource("18_pm3ni")
+
+[node name="trees4" type="Sprite2D" parent="ParallaxBg" unique_id=252582483]
+position = Vector2(0, 1079)
+texture = ExtResource("18_pm3ni")
+flip_v = true
+
+[node name="bg2" type="Sprite2D" parent="ParallaxBg" unique_id=889916181]
+z_index = -10
+position = Vector2(0, 1208)
+texture = ExtResource("13_dp3eg")
