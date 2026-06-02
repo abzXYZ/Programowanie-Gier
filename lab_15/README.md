@@ -8,9 +8,10 @@ Uruchomienie:
 Pobrać pliki i zaimportować do edytora Godot plik `cavern-tale/project.godot`. Następnie uruchomić główną scenę (F5).
 Sterowanie:
 - Ruch lewo/prawo - strzałki lewo/prawo
+- Celowanie góra/dół - strzałki góra/dół
 - Skok - **Z**
 - Strzał - **X**
-- Interakcja - strzałka w dół
+- Interakcja - strzałka w dół (stojąc na ziemi)
 
 ## Opis własnego mechanizmu
 Gra **nie jest klonem** ani jednej, ani drugiej z wyżej wspomnianych gier. Zamiast tego łączy wybrane aspekty obu z nich, aby stworzyć coś nowego. W grze nacisk kładziony jest przede wszystkim na mechanikę **poruszania się po poziomach przy pomocy swojego arsenału**, inspirowane bronią *Machine Gun* z Cave Story, co bardzo dobrze komplementuje mechanikę **poszukiwania schronienia przed upływem czasu** w postaci śnieżycy, która w momencie nadejścia zaczyna zadawać graczowi 1 punkt obrażeń na sekundę.
