@@ -1,7 +1,7 @@
 # Lab 15 - Projekt
 
 ## Opis
-Gra utworzona została w silniku Godot 4.6.1. Jest to platformówka action-adventure bazowana na gameplayu z [Cave Story](https://pl.wikipedia.org/wiki/Cave_Story) z inspiracjami z [Rain World](https://en.wikipedia.org/wiki/Rain_World). Celem gry jest przemierzanie poziomów w celu znalezienia schronienia przed nadejściem śnieżycy walcząc przy tym z przeciwnikami. Niszczenie wrogów zwiększa poziom broni, która na maksymalnym poziomie zyskuje silny odrzut, pozwalając na szybsze poruszanie się między poziomami. Otrzymywanie obrażeń zmniejsza poziom broni.
+Gra utworzona została w silniku Godot 4.6.1. Jest to platformówka action-adventure bazowana na gameplayu z [Cave Story](https://pl.wikipedia.org/wiki/Cave_Story) z inspiracjami z [Rain World](https://en.wikipedia.org/wiki/Rain_World). Celem gry jest przemierzanie poziomów w celu znalezienia schronienia przed nadejściem śnieżycy walcząc przy tym z przeciwnikami. Niszczenie wrogów zwiększa poziom broni, która na maksymalnym poziomie zyskuje silny odrzut w kierunku przeciwnym do kierunku celowania, pozwalając na szybsze poruszanie się między poziomami. Otrzymywanie obrażeń zmniejsza poziom broni.
 
 ## Instrukcja
 Uruchomienie:
@@ -16,7 +16,7 @@ Sterowanie:
 Gra **nie jest klonem** ani jednej, ani drugiej z wyżej wspomnianych gier. Zamiast tego łączy wybrane aspekty obu z nich, aby stworzyć coś nowego. W grze nacisk kładziony jest przede wszystkim na mechanikę **poruszania się po poziomach przy pomocy swojego arsenału**, inspirowane bronią *Machine Gun* z Cave Story, co bardzo dobrze komplementuje mechanikę **poszukiwania schronienia przed upływem czasu** w postaci śnieżycy, która w momencie nadejścia zaczyna zadawać graczowi 1 punkt obrażeń na sekundę.
 
 ## Znane bugi i ograniczenia
-- Czasami gra nie zarejestruje próby interakcji z drzwiami. Prawdopodobnie jest to problem z małym collision boxem.
+- Czasami gra nie zarejestruje próby interakcji z drzwiami. Raczej jest to problem z tym jak gra rejestruje pojedyncze kliknięcie przycisku interakcji.
 - Gra nie posiada ustawień w menu głównym.
 
 ## Źródła assetów
