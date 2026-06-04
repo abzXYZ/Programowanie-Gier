@@ -266,6 +266,7 @@ texture = SubResource("AtlasTexture_eb6dy")
 [node name="Room" parent="." unique_id=1336855518 instance=ExtResource("10_choun")]
 
 [node name="ParallaxSnow" type="Parallax2D" parent="." unique_id=504308482]
+z_index = 1
 texture_repeat = 2
 scale = Vector2(2, 2)
 scroll_scale = Vector2(1.2, 1.2)

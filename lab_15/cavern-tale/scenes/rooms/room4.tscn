@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ct7lh62dxdpjy" path="res://assets/images/By_Eduardo_Scarpato/01 - Tileset.png" id="2_ttfhd"]
 [ext_resource type="TileSet" uid="uid://c8xefsx8egxgh" path="res://assets/decor.tres" id="3_0pl5x"]
 [ext_resource type="PackedScene" uid="uid://diuqnaxf5stbv" path="res://scenes/drone.tscn" id="4_h3m3m"]
+[ext_resource type="PackedScene" uid="uid://d0u4olpodj2pv" path="res://scenes/particle_instance.tscn" id="5_0pl5x"]
 [ext_resource type="PackedScene" uid="uid://qtctx4shv8gx" path="res://scenes/door.tscn" id="5_803qg"]
 [ext_resource type="Texture2D" uid="uid://dga7cwpo6ah4p" path="res://assets/images/doors.png" id="5_ttfhd"]
 
@@ -160,9 +161,11 @@ tile_set = ExtResource("3_0pl5x")
 
 [node name="Drone" parent="." unique_id=1691107864 instance=ExtResource("4_h3m3m")]
 position = Vector2(-55, -24)
+particle = ExtResource("5_0pl5x")
 
 [node name="Drone3" parent="." unique_id=652686624 instance=ExtResource("4_h3m3m")]
 position = Vector2(89, -56)
+particle = ExtResource("5_0pl5x")
 
 [node name="SpawnPos" type="Node2D" parent="." unique_id=1837829055]
 position = Vector2(32.999996, 36)

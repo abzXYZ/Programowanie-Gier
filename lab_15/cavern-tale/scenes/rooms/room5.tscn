@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://diuqnaxf5stbv" path="res://scenes/drone.tscn" id="4_c0p6h"]
 [ext_resource type="PackedScene" uid="uid://qtctx4shv8gx" path="res://scenes/door.tscn" id="5_2by5u"]
 [ext_resource type="Texture2D" uid="uid://dga7cwpo6ah4p" path="res://assets/images/doors.png" id="5_2xd6j"]
+[ext_resource type="PackedScene" uid="uid://d0u4olpodj2pv" path="res://scenes/particle_instance.tscn" id="5_ohhjx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n6vmk"]
 texture = ExtResource("1_feem1")
@@ -163,9 +164,11 @@ tile_set = ExtResource("3_ohhjx")
 
 [node name="Drone" parent="." unique_id=1691107864 instance=ExtResource("4_c0p6h")]
 position = Vector2(-39, 52)
+particle = ExtResource("5_ohhjx")
 
 [node name="Drone3" parent="." unique_id=1804975894 instance=ExtResource("4_c0p6h")]
 position = Vector2(17, 108)
+particle = ExtResource("5_ohhjx")
 
 [node name="SpawnPos" type="Node2D" parent="." unique_id=74235156]
 position = Vector2(-214.99998, 32)
