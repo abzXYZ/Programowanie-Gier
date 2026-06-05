@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dhxjgq2beoy0k"]
+
+[ext_resource type="Script" uid="uid://b0acb83pqfmdr" path="res://boss.gd" id="1_0bnu1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mihky"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mihky"]
+height = 1.8188477
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0bnu1"]
+height = 2.4350586
+
+[node name="Boss" type="Node3D" unique_id=1014778768]
+script = ExtResource("1_0bnu1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1911616407]
+transform = Transform3D(1.903554, 0, 0, 0, 1.8516587, 0, 0, 0, 0.6242417, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_mihky")
+
+[node name="HitboxPhase1" type="Area3D" parent="." unique_id=1913068394]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxPhase1" unique_id=1220075025]
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0.005908206, 0)
+shape = SubResource("CapsuleShape3D_mihky")
+
+[node name="HitboxPhase2" type="Area3D" parent="." unique_id=372781538]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxPhase2" unique_id=641327554]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.01574707, 0)
+shape = SubResource("CapsuleShape3D_0bnu1")
+disabled = true
+debug_color = Color(0.77075034, 0.3373168, 0.7403067, 0.41960785)
