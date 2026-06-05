@@ -1,6 +1,7 @@
 # Lab 14 - Boss, FSM i Domknięcie Projektu
 
 ## Co zostało zrealizowane
+Zrealizowano zadania 1-5 oraz drugie dodatkowe.
 Do gry z poprzednich zajęć laboratoryjnych dodano bossa, który posiada 4 stany zarządane przez FSM. Boss rusza się, otrzymuje obrażenia, jego hitbox zmienia się zależnie od fazy, wybucha cząsteczkami przy śmierci i posiada pasek HP w HUD.
 
 ## Uruchomienie

@@ -7,27 +7,12 @@ var flash_material = StandardMaterial3D.new()
 @export var sway_amplitude: float = 2
 @export var sway_period: float = 2
 @export var shoot_interval: float = 2.5
+@export var death_delay : float = 0.1	## Czas między początkiem śmierci a queue_free
 @export var bullet_scene: PackedScene
+@onready var shooting : Enemy_shooting_component = $Enemy_shooting_component
 
 func _on_shoot_timer():
-	var playergroup = get_tree().get_nodes_in_group("player")
-
-	if playergroup.is_empty():
-		return
-
-	var player = playergroup[0]
-	var direction = (player.global_position - global_position).normalized()
-
-	var bullet = bullet_scene.instantiate()
-	bullet.collision_layer = 8 # Layer 4
-	bullet.collision_mask = 1 # Mask 1
-	get_tree().root.add_child(bullet)
-	bullet.global_position = global_position
-	bullet.look_at(player.global_position)
-	bullet.rotation.z += 90
-	bullet.rotation.y += 90
-	bullet.rotation.x += 90
-	bullet.direction = direction
+	shooting.shoot(bullet_scene,global_position)
 
 func _set_timer():
 	var timer = Timer.new()
@@ -62,5 +47,5 @@ func _on_hit(_area: Area3D):
 		# Enemy killed, bo dodana obsługa ilości przeciwników, co wymaga dedykowanej funkcji
 		GameManager.enemy_killed.emit(score_value)
 		$MeshInstance3D.material_override = flash_material
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(death_delay).timeout
 		queue_free()

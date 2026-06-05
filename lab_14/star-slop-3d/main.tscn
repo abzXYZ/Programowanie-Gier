@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dtjatladoc8fk" path="res://wave_spawner.gd" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://d3lgnccuuvn68" path="res://wall.gd" id="7_272bh"]
 [ext_resource type="Script" uid="uid://iqx6w4a3p42c" path="res://camera_3d.gd" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://dhxjgq2beoy0k" path="res://boss.tscn" id="8_kek77"]
 
 [sub_resource type="Curve3D" id="Curve3D_7dm0k"]
 _data = {
@@ -113,8 +114,14 @@ lightmap_size_hint = Vector2i(509, 606)
 material = SubResource("StandardMaterial3D_kek77")
 size = Vector3(1, 10, 100)
 
-[node name="Game" type="Node3D" unique_id=112565423]
+[node name="Game" type="Node3D" unique_id=112565423 node_paths=PackedStringArray("HUD", "ScoreLabel", "HPbar", "LivesLabel", "BossHPbar", "BossHPlabel")]
 script = ExtResource("1_7mycd")
+HUD = NodePath("HUD")
+ScoreLabel = NodePath("HUD/L_top/ScoreLabel")
+HPbar = NodePath("HUD/Mid_bottom/HPbar")
+LivesLabel = NodePath("HUD/R_top/LivesLabel")
+BossHPbar = NodePath("HUD/Mid_top/BossBar")
+BossHPlabel = NodePath("HUD/Mid_top/BossHpLabel")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=208703623]
 transform = Transform3D(0.524794, -0.843804, 0.11218768, -0.39613605, -0.1254388, 0.9095831, -0.7534372, -0.52178526, -0.4000907, 26.88483, 12.047754, -7.436566)
@@ -147,10 +154,13 @@ sky_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.182)
 curve = SubResource("Curve3D_7dm0k")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=419238680]
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=419238680 node_paths=PackedStringArray("HudRatio", "HudSpeed", "HudTime")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_ig7tw")
+HudRatio = NodePath("../../HUD/L_top/RatioLabel")
+HudSpeed = NodePath("../../HUD/L_top/SpeedLabel")
+HudTime = NodePath("../../HUD/L_top/TimeLabel")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D" unique_id=138494104]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 15.182)
@@ -171,6 +181,9 @@ transform = Transform3D(-0.9999999, 0, -8.742278e-08, 0, 0.9999999, 0, 8.742279e
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Path3D/PathFollow3D/MeshInstance3D" unique_id=634642111]
 libraries/ = SubResource("AnimationLibrary_4c57u")
 playback_auto_capture = false
+
+[node name="Boss" parent="Path3D/PathFollow3D" unique_id=1014778768 instance=ExtResource("8_kek77")]
+transform = Transform3D(4.371139e-08, 1, 1.509958e-07, 1, -4.371139e-08, 0, 6.600236e-15, 1.509958e-07, -1, 1.1368684e-13, 13.046929, 40)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=986079643]
 unique_name_in_owner = true
@@ -251,17 +264,52 @@ offset_left = -162.0
 offset_right = 161.0
 offset_bottom = 27.0
 
+[node name="Mid_top" type="Control" parent="HUD" unique_id=1376446512]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="BossBar" type="ProgressBar" parent="HUD/Mid_top" unique_id=1347191052]
+visible = false
+modulate = Color(0, 1, 0, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -177.0
+offset_right = 177.0
+offset_bottom = 27.0
+grow_horizontal = 2
+step = 1.0
+show_percentage = false
+
+[node name="BossHpLabel" type="Label" parent="HUD/Mid_top" unique_id=1072720536]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.5
+offset_right = 33.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "BOSS HP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="WaveSpawner" type="Node" parent="." unique_id=90179853]
 script = ExtResource("5_lquwl")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1520174593]
 environment = SubResource("Environment_5vw27")
 
-[node name="L_Wall" type="StaticBody3D" parent="." unique_id=42203871]
+[node name="L_Wall" type="StaticBody3D" parent="." unique_id=42203871 node_paths=PackedStringArray("mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7153616, 0, 42.9006)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("7_272bh")
+mesh = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="L_Wall" unique_id=1115243396]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10452652, 0, 0)
@@ -272,11 +320,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13656044, 0, 0)
 visible = false
 shape = SubResource("BoxShape3D_4c57u")
 
-[node name="R_Wall" type="StaticBody3D" parent="." unique_id=2034324890]
+[node name="R_Wall" type="StaticBody3D" parent="." unique_id=2034324890 node_paths=PackedStringArray("mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.715, 0, 42.901)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("7_272bh")
+mesh = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="R_Wall" unique_id=1079493110]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10452652, 0, 0)
@@ -287,7 +336,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.107990265, 0, 0)
 visible = false
 shape = SubResource("BoxShape3D_4c57u")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=915301658]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=915301658 node_paths=PackedStringArray("camera_target")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.6632183e-06, 0, -3.8429995)
 fov = 90.0
 script = ExtResource("8_5vw27")
+camera_target = NodePath("../Path3D/PathFollow3D/MeshInstance3D/CameraTarget")

@@ -5,15 +5,19 @@ extends PathFollow3D
 # Oddzielone zmienne speed i rail_speed, aby można było resetować prędkość w zadaniu dodatkowym 2
 var speed = rail_speed
 
-@onready var HudRatio = %HUD/L_top/RatioLabel
-@onready var HudSpeed = %HUD/L_top/SpeedLabel
-@onready var HudTime = %HUD/L_top/TimeLabel
+@export var pass_time : float = 5
+
+@export var HudRatio : Label #%HUD/L_top/RatioLabel
+@export var HudSpeed : Label #%HUD/L_top/SpeedLabel
+@export var HudTime : Label #%HUD/L_top/TimeLabel
 
 var elapsed = 0
 
 func reset() -> void:
 	elapsed = 0
 	speed = rail_speed
+	# Poinformuj kamerę, żeby się nie wlokła, tylko wróciła na start 
+	GameManager.rail_finished.emit()
 
 func updateHud() -> void:
 	if HudRatio:
@@ -23,19 +27,13 @@ func updateHud() -> void:
 	if HudTime:
 		HudTime.text = str("Time: ", elapsed)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	elapsed += delta
 	progress_ratio += speed * delta
 	
 	if progress_ratio < 0.01:
 		reset()
-	elif elapsed < 5:
+	elif elapsed < pass_time:
 		speed += 0.01 * delta
 	
 	updateHud()

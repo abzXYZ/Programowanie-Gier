@@ -7,9 +7,11 @@ extends MeshInstance3D
 
 @export var bullet_scene: PackedScene
 var shoot_cooldown: float = 0.0
+const shoot_cooldown_time = 0.3	## Shooting cooldown time in seconds
 var roll_cooldown: float = 0.0
+const roll_cooldown_time = 3	## Barrel roll cooldown time in seconds
 var bullets = []
-const max_bullets = 3
+const max_bullets = 4
 const move_speed = 10
 var is_invincible = false
 
@@ -22,7 +24,7 @@ func _shoot() -> void:
 	get_tree().root.add_child(bullet)
 	bullet.direction = Vector3(0,0,1)
 	bullet.global_position = global_position
-	shoot_cooldown = 0.3
+	shoot_cooldown = shoot_cooldown_time
 
 func _take_damage() -> void:
 	if not is_invincible:
@@ -35,13 +37,13 @@ func _do_barrel_roll() -> void:
 	$AnimationPlayer.play("barrel_roll")
 	await $AnimationPlayer.animation_finished
 	is_invincible = false
-	roll_cooldown = 3
+	roll_cooldown = roll_cooldown_time
 
 func _ready() -> void:
 	GameManager.bullet_dead.connect(_clear_bullet)
 	self.add_to_group("player")
 	
-	$Area3D.body_entered.connect(func(body): _take_damage())
+	$Area3D.body_entered.connect(func(_body): _take_damage())
 
 func _process(delta: float) -> void:
 	# Strzał

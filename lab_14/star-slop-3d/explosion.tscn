@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bkcql5cucp58"]
+
+[ext_resource type="Script" uid="uid://b8xsajk7n7o5p" path="res://explosion.gd" id="1_q7epf"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vxas0"]
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 10.0
+
+[sub_resource type="PlaceholderMaterial" id="PlaceholderMaterial_q7epf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxas0"]
+next_pass = SubResource("PlaceholderMaterial_q7epf")
+
+[sub_resource type="SphereMesh" id="SphereMesh_j4sxf"]
+material = SubResource("StandardMaterial3D_vxas0")
+
+[node name="Node3D" type="Node3D" unique_id=1416982140]
+script = ExtResource("1_q7epf")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1043848443]
+emitting = false
+amount = 45
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_vxas0")
+draw_pass_1 = SubResource("SphereMesh_j4sxf")

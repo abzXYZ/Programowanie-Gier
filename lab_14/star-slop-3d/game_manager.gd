@@ -22,6 +22,10 @@ signal enemy_killed(points)
 signal player_damaged()
 signal bullet_dead(bullet)
 signal boss_died()
+signal spawn_boss()
+signal setup_boss_bar(max_hp)
+signal boss_hp_changed(hp)
+signal rail_finished()
 
 # Odtwarzanie muzyki tła gry
 func play_bgm() -> void:
@@ -48,7 +52,8 @@ func handle_enemy_kill(points) -> void:
 	_sfx_score.play()
 	enemies_count -= 1
 	if enemies_count <= 0:
-		level_complete.emit()
+		# Zamiast końca gry przy pokonaniu fali spawnuje bossa
+		spawn_boss.emit()
 
 func player_hit(damage = 1) -> void:
 	player_hp -= damage

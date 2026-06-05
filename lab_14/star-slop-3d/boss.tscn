@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dhxjgq2beoy0k"]
 
 [ext_resource type="Script" uid="uid://b0acb83pqfmdr" path="res://boss.gd" id="1_0bnu1"]
+[ext_resource type="PackedScene" uid="uid://dak52xeqwkyvj" path="res://bullet_enemy.tscn" id="2_6xxrv"]
+[ext_resource type="PackedScene" uid="uid://bkcql5cucp58" path="res://explosion.tscn" id="3_skx2t"]
+[ext_resource type="Script" uid="uid://it4mwvocc1uy" path="res://enemy_shooting.gd" id="4_lnbgr"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mihky"]
 
@@ -11,7 +14,10 @@ height = 1.8188477
 height = 2.4350586
 
 [node name="Boss" type="Node3D" unique_id=1014778768]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_0bnu1")
+bullet_scene = ExtResource("2_6xxrv")
+explosion = ExtResource("3_skx2t")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1911616407]
 transform = Transform3D(1.903554, 0, 0, 0, 1.8516587, 0, 0, 0, 0.6242417, 0, 0, 0)
@@ -24,6 +30,7 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxPhase1" unique_id=1220075025]
 transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0.005908206, 0)
 shape = SubResource("CapsuleShape3D_mihky")
+disabled = true
 
 [node name="HitboxPhase2" type="Area3D" parent="." unique_id=372781538]
 collision_layer = 2
@@ -34,3 +41,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.01574707, 0)
 shape = SubResource("CapsuleShape3D_0bnu1")
 disabled = true
 debug_color = Color(0.77075034, 0.3373168, 0.7403067, 0.41960785)
+
+[node name="Enemy_shooting_component" type="Node" parent="." unique_id=332972479]
+script = ExtResource("4_lnbgr")
+metadata/_custom_type_script = "uid://it4mwvocc1uy"

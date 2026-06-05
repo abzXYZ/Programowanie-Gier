@@ -8,6 +8,7 @@ var waves = [
 ]
 var time: float = 0.0
 var enemy = preload("res://enemy.tscn")
+var boss = preload("res://boss.tscn")
 
 func count_all_enemies() -> int:
 	var result : int = 0

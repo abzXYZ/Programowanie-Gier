@@ -5,14 +5,18 @@ extends Camera3D
 
 var shake_duration: float = 0.0
 var shake_intensity: float = 0.0
+var difference : Vector3
 
 func start_shake(intensity: float = 3, duration: float = 0.3) -> void:
 	shake_intensity = intensity
 	shake_duration = duration
 
+func _snap_to_ship() -> void:
+	global_position = camera_target.global_position + difference
+
 func _ready() -> void:
-	camera_target = %CameraTarget
 	GameManager.player_damaged.connect(start_shake)
+	GameManager.rail_finished.connect(_snap_to_ship)
 
 func _process(delta: float) -> void:
 	var offset = Vector3(0,0,0)
@@ -27,5 +31,6 @@ func _process(delta: float) -> void:
 		) * shake_intensity * t
 	
 	global_position = global_position.lerp(camera_target.global_position + offset, lag_speed * delta)
-	
+	# Niweluj lekką zcinkę gdy następuje teleportacja; zachowaj pęd
+	difference = global_position - camera_target.global_position
 	

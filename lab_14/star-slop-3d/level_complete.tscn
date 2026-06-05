@@ -20,9 +20,11 @@ grow_vertical = 2
 script = ExtResource("1_xvwna")
 
 [node name="SoreLoser" type="Label" parent="." unique_id=184447855]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 271.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 328.0
+grow_horizontal = 2
 text = "Poziom ukończony"
 label_settings = SubResource("LabelSettings_jia4s")
 horizontal_alignment = 1
@@ -41,7 +43,8 @@ offset_right = 76.0
 offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "I co dalej?"
+text = "Super
+"
 script = ExtResource("1_sxtul")
 
 [node name="Score" type="Label" parent="." unique_id=209058496]
