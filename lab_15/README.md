@@ -18,6 +18,7 @@ Gra **nie jest klonem** ani jednej, ani drugiej z wyżej wspomnianych gier. Zami
 
 ## Znane bugi i ograniczenia
 - Czasami gra nie zarejestruje próby interakcji z drzwiami. Raczej jest to problem z tym jak gra rejestruje pojedyncze kliknięcie przycisku interakcji.
+- Zdarza się, że efekt przejścia przy wychodzeniu z początkowego pokoju się nie odegra.
 - Gra nie posiada ustawień w menu głównym.
 
 ## Źródła assetów
