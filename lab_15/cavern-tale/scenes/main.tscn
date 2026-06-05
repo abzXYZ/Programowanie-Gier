@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b2q1v1byn3725" path="res://assets/images/weapons.png" id="2_choun"]
 [ext_resource type="Script" uid="uid://w0fni1xh8x8m" path="res://scripts/lmg.gd" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dc62k8262ialc" path="res://scenes/bullet.tscn" id="5_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://c2j0htuxp84sy" path="res://assets/images/particles.png" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://c2j0htuxp84sy" path="res://assets/particles.png" id="6_tefeu"]
 [ext_resource type="FontFile" uid="uid://bill4gukq7d2v" path="res://assets/Ithaca font/Ithaca-LVB75.ttf" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://chtqy5x27nrn4" path="res://scripts/hud.gd" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://cn2rrg8crta25" path="res://assets/images/meter.png" id="10_0ld40"]
@@ -114,7 +114,6 @@ script = ExtResource("2_tbgi4")
 ammo_regen_speed = 0.5
 projectile = ExtResource("5_tbgi4")
 cooldown = 0.1
-metadata/_custom_type_script = "uid://do44ti8bx7o68"
 
 [node name="MuzzleFlash" type="AnimatedSprite2D" parent="Player/LMG" unique_id=1173275045]
 visible = false
@@ -146,7 +145,7 @@ offset_top = -58.0
 offset_right = 287.0
 offset_bottom = -16.0
 grow_vertical = 0
-text = "AMMO 50 \\ 50"
+text = "AMMO 30 / 30"
 label_settings = SubResource("LabelSettings_o6xl0")
 uppercase = true
 
