@@ -183,6 +183,6 @@ scale = Vector2(0.2222164, -0.095238246)
 texture = SubResource("AtlasTexture_ohhjx")
 
 [node name="Door2" parent="." unique_id=1534467337 instance=ExtResource("5_2by5u")]
-position = Vector2(-101, -80)
+position = Vector2(-103, -80)
 next_room_path = "uid://jftqfgwieyc7"
 safehouse_entrance = true

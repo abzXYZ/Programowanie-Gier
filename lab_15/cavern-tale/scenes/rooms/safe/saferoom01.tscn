@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://drfhtpawnsuot" path="res://assets/images/By_Eduardo_Scarpato/02 - Decorations.png" id="1_fltkk"]
 [ext_resource type="TileSet" uid="uid://bw4motrju8bmg" path="res://assets/indoors.tres" id="2_lritj"]
-[ext_resource type="Texture2D" uid="uid://dga7cwpo6ah4p" path="res://assets/images/doors.png" id="3_lvcis"]
+[ext_resource type="PackedScene" uid="uid://qtctx4shv8gx" path="res://scenes/door.tscn" id="3_qtibs"]
 [ext_resource type="Texture2D" uid="uid://cqoq05qjunwov" path="res://assets/images/flame.png" id="4_lritj"]
 [ext_resource type="Script" uid="uid://c2poa3q2u4edr" path="res://scripts/fireplace.gd" id="4_qtibs"]
 
@@ -30,10 +30,6 @@ texture = ExtResource("1_fltkk")
 
 [sub_resource type="TileSet" id="TileSet_h0e1w"]
 sources/0 = SubResource("TileSetAtlasSource_bdral")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ujdn"]
-atlas = ExtResource("3_lvcis")
-region = Rect2(16, 0, 16, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtibs"]
 size = Vector2(16, 16)
@@ -89,7 +85,7 @@ tile_set = SubResource("TileSet_h0e1w")
 [node name="Terrain" type="TileMapLayer" parent="." unique_id=1181604198]
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD9/wIAAAABAAAAAAD+/wIAAAABAAAAAAD//wIAAAABAAAAAAAAAAIAAAABAAAAAAABAAIAAAABAAAAAAACAAIAAAABAAAAAAACAAMAAAABAAIAAAABAAMAAAABAAIAAAAAAAMAAAABAAIAAAD//wMAAAABAAIAAAD+/wMAAAABAAIAAAD9/wMAAAABAAIAAAADAAMAAAABAAIAAAADAAIAAAABAAEAAAD8////AAABAAEAAAD8/wAAAAACAAEAAAD8/wEAAAACAAEAAAD8/wIAAAABAAEAAAD8/wMAAAABAAIAAAD9////AAACAAIAAAACAP//AAAAAAIAAAADAP//AAABAAEAAAAEAP//AAACAAEAAAADAAAAAAAAAAEAAAADAAEAAAAAAAEAAAAEAAIAAAACAAEAAAAEAAEAAAACAAEAAAAEAAAAAAACAAEAAAAEAAMAAAACAAIAAAAEAP7/AAACAAAAAAADAP7/AAABAAEAAAACAP7/AAAAAAEAAAD9//7/AAACAAEAAAD8//7/AAABAAEAAAD7//7/AAAAAAAAAAD7////AAAAAAEAAAD7/wAAAAAAAAEAAAD7/wEAAAAAAAEAAAD7/wIAAAAAAAEAAAD7/wMAAAAAAAIAAAD8//3/AAAAAAAAAAD9//3/AAABAAEAAAD+//3/AAACAAIAAAABAP3/AAAAAAIAAAACAP3/AAABAAEAAAADAP3/AAACAAAAAAD9//z/AAAAAAAAAAD+//z/AAABAAEAAAD///z/AAABAAIAAAAAAPz/AAABAAIAAAABAPz/AAABAAEAAAACAPz/AAACAAAAAAD+//v/AAAAAAAAAAD///v/AAABAAEAAAAAAPv/AAABAAEAAAABAPv/AAACAAAAAAD///r/AAAAAAAAAAAAAPr/AAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAD9/wIAAAABAAAAAAD+/wIAAAABAAAAAAD//wIAAAABAAAAAAAAAAIAAAABAAAAAAABAAIAAAABAAAAAAACAAIAAAABAAAAAAACAAMAAAABAAIAAAABAAMAAAABAAIAAAAAAAMAAAABAAIAAAD//wMAAAABAAIAAAD+/wMAAAABAAIAAAD9/wMAAAABAAIAAAADAAMAAAABAAIAAAADAAIAAAABAAEAAAD8////AAABAAEAAAD8/wAAAAACAAEAAAD8/wEAAAACAAEAAAD8/wIAAAABAAEAAAD8/wMAAAABAAIAAAD9////AAABAAIAAAACAP//AAABAAIAAAADAP//AAABAAEAAAAEAP//AAACAAEAAAADAAAAAAAAAAEAAAADAAEAAAAAAAEAAAAEAAIAAAACAAEAAAAEAAEAAAACAAEAAAAEAAAAAAACAAEAAAAEAAMAAAACAAIAAAAEAP7/AAACAAAAAAADAP7/AAABAAEAAAACAP7/AAABAAEAAAD9//7/AAABAAEAAAD8//7/AAABAAEAAAD7//7/AAAAAAAAAAD7////AAAAAAEAAAD7/wAAAAAAAAEAAAD7/wEAAAAAAAEAAAD7/wIAAAAAAAEAAAD7/wMAAAAAAAIAAAD8//3/AAAAAAAAAAD9//3/AAABAAEAAAD+//3/AAABAAEAAAABAP3/AAABAAEAAAACAP3/AAABAAEAAAADAP3/AAACAAAAAAD9//z/AAAAAAAAAAD+//z/AAABAAEAAAD///z/AAABAAEAAAAAAPz/AAABAAEAAAABAPz/AAABAAEAAAACAPz/AAACAAAAAAD+//v/AAAAAAAAAAD///v/AAABAAEAAAAAAPv/AAABAAEAAAABAPv/AAACAAAAAAD///r/AAAAAAAAAAAAAPr/AAACAAAAAAA=")
 tile_set = ExtResource("2_lritj")
 
 [node name="Bg" type="TileMapLayer" parent="." unique_id=401946931]
@@ -103,15 +99,12 @@ position = Vector2(39.999996, 20)
 rotation = 3.1415927
 scale = Vector2(4.5001183, -10.499984)
 
-[node name="FakeDoor" type="Sprite2D" parent="SpawnPos" unique_id=939858962]
-z_index = -1
-texture_filter = 1
-rotation = -3.1415925
-scale = Vector2(0.2222164, -0.095238246)
-texture = SubResource("AtlasTexture_0ujdn")
+[node name="Door" parent="." unique_id=771680102 instance=ExtResource("3_qtibs")]
+position = Vector2(40, 20)
+next_room_path = "uid://c8bnrevilef3s"
+closed = true
 
 [node name="Fireplace" type="Area2D" parent="." unique_id=1459005727]
-z_index = -1
 texture_filter = 1
 script = ExtResource("4_qtibs")
 

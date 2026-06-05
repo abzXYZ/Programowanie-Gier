@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Coldcore"
-config/version="DEMO 05.06.26"
+config/version="DEMO 02.06.26"
 run/main_scene="uid://da1fx1y5wip0u"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
